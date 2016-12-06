@@ -1,0 +1,58 @@
+<div class="container" style="width: 60%">
+
+		<h1>Rooms Available<%=@num_of_adults%></h1>
+<table class="table table-hover">
+	<tr>
+		<td><img src="https://placeholdit.imgix.net/~text?txtsize=28&bg=0099ff&txtclr=ffffff&txt=300%C3%97300&w=300&h=300&fm=png" style="width: 100px"></td>
+		<td>Single with Ocean View</td>
+		<td>
+			<ul>
+			  <li>TV</li>
+			  <li>1 Single Bed</li>
+			  <li>Balcony with Ocean View</li>
+		  </ul>
+		</td>
+		<td>$30/day</td>
+		<td><a href="/single-ov" <%=$room_type = "Single with Ocean View"%>>Book Now</a></td>
+	</tr>
+	
+	<tr>
+		<td><img src="https://placeholdit.imgix.net/~text?txtsize=28&bg=0099ff&txtclr=ffffff&txt=300%C3%97300&w=300&h=300&fm=png" style="width: 100px"></td>
+		<td>Single</td>
+		<td>
+		  <ul>
+			  <li>TV</li>
+			  <li>1 Single Bed</li>
+	    </ul>
+		</td>
+		<td>$25/day</td>
+		<td><a href="/single"<%=$room_type = "Single"%>>Book Now</a></td>
+	</tr>
+	
+	<tr>
+		<td><img src="https://placeholdit.imgix.net/~text?txtsize=28&bg=0099ff&txtclr=ffffff&txt=300%C3%97300&w=300&h=300&fm=png" style="width: 100px"></td>
+		<td>Double</td>
+		<td>
+			<ul>
+			  <li>TV</li>
+			  <li>1 Double Bed</li>
+		  </ul>
+	  </td>
+		<td>$40/day</td>
+		<td><a href="/double"<%=$room_type = "Double"%>>Book Now</a></td>
+	</tr>
+	
+	<tr>
+		<td><img src="https://placeholdit.imgix.net/~text?txtsize=28&bg=0099ff&txtclr=ffffff&txt=300%C3%97300&w=300&h=300&fm=png" style="width: 100px"></td>
+		<td>Family</td>
+		<td>
+			<ul>
+			  <li>TV</li>
+			  <li>2 Double Beds</li>
+		  </ul>
+		</td>
+		<td>$50/day</td>
+		<td><a href="/family"<%=$room_type = "Family"%>>Book Now</a></td>
+	</tr>
+</table>
+</div>

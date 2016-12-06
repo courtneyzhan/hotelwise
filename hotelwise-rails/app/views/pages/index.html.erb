@@ -3,7 +3,7 @@
 		<h1>Room Availability Check</h1>
 
 
-		<form class="form-horizontal">
+		<form class="form-horizontal" action="/availability_check">
 			<div class="form-group">
 				<label class="col-sm-3 control-label" for="inputEmail3">Number of Adults</label>
 
@@ -45,6 +45,10 @@
 
 				<div class="col-sm-9">
 					<select class ="form-control" id="roomtype" name="roomtype">
+						<option value="default">
+							--Select--
+						</option>
+						
 						<option value="single">
 							Single
 						</option>

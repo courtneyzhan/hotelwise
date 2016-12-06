@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'pages#index'
-  #get '/new' => 'pages#new'
+  get '/availability_check' => 'pages#check'
+  get '/single-ov' => 'pages#customer_register'
+  get '/single' => 'pages#customer_register'
+  get '/double' => 'pages#customer_register'
+  get '/family' => 'pages#not_available'
+  get '/confirmation' => 'pages#confirmation'
+  get '/receipt' => 'pages#receipt'
 end

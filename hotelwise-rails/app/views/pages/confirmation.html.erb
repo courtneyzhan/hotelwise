@@ -1,0 +1,34 @@
+<div class="container" style="width: 60%">
+
+		<h1>Confirmation</h1>
+		<p>Room Type: <strong><%=$room_type.capitalize%></strong></p>
+		<p>Duration of Stay: <%=$arrive%> - <%=$depart%></p>
+		<p>Guests: <%=$num_of_adults%> adults <%=$num_of_children%> children</p>
+		
+		
+		<h1>Payment: $<%=$price%></h1>
+		
+		<form class="form-horizontal" action="/receipt">
+		<div class="form-group">
+			<label class="col-sm-3 control-label" for="inputPassword3">Credit Card Number</label>
+
+			<div class="col-sm-9">
+				<input class="form-control" id="credit_card_number" name="credit_card_number" placeholder="Credit Card Number" type="number">
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label class="col-sm-3 control-label" for="inputPassword3">Credit Card Expiry Date</label>
+
+			<div class="col-sm-9">
+				<input class="form-control" id="credit_card_expiry" name="credit_card_expiry" placeholder="Credit Card Expiry Date" type="text">
+			</div>
+		</div>
+		
+			<div class="form-group">
+				<div class="col-sm-offset-3 col-sm-9">
+					<button class="btn btn-default" type="submit">Continue</button>
+				</div>
+			</div>
+		</form>
+	</div>
