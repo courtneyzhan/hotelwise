@@ -2,8 +2,7 @@
 	<div class="container" style="width: 60%">
 		<h1>Room Availability Check</h1>
 
-
-		<form class="form-horizontal" action="/availability_check">
+<%= form_tag("/availability_check", method: "POST", :class => "form-horizontal") do %>
 			<div class="form-group">
 				<label class="col-sm-3 control-label" for="inputEmail3">Number of Adults</label>
 
@@ -73,5 +72,6 @@
 					<button class="btn btn-default" type="submit">Check</button>
 				</div>
 			</div>
-		</form>
+
+<% end %>
 	</div>
