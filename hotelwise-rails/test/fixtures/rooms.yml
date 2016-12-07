@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  room_number: MyString
+  room_type: MyString
+  price: 9.99
+  floor: MyString
+  facility: MyString
+  description: MyText
+
+two:
+  room_number: MyString
+  room_type: MyString
+  price: 9.99
+  floor: MyString
+  facility: MyString
+  description: MyText
