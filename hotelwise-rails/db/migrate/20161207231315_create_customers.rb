@@ -7,6 +7,7 @@ class CreateCustomers < ActiveRecord::Migration[5.0]
       t.string :credit_card_number
       t.string :credit_card_expiry_month
       t.string :credit_card_expiry_year
+
       t.timestamps
     end
   end
