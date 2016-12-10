@@ -24,4 +24,4 @@ booking_2 = Booking.create(room_id: "2", customer_id: "1", check_in_date: 201601
 
 booking_3 = Booking.create(room_id: "2", customer_id: "2", check_in_date: 20160102, check_out_date: 20160103)
 
-booking_1 = Booking.create(room_id: "3", customer_id: "3", check_in_date: 20160101, check_out_date: 20160103)
+booking_4 = Booking.create(room_id: "3", customer_id: "3", check_in_date: 20160101, check_out_date: 20160103)
