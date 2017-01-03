@@ -5,12 +5,19 @@ class WelcomeController < ApplicationController
   
   def customer_log_in
     if request.post?
-      redirect_to "/search"
+      
+      @email = params[:email]
+      @password = params[:password]
+      if @email == "a@b.c" && @password == 'secret'
+        redirect_to "/search"        
+      end
+      
     end
   end
   
   def staff_log_in
     if request.post?
+
       redirect_to "/bookings"
     end
   end

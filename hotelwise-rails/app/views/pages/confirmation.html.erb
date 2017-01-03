@@ -1,12 +1,12 @@
 <div class="container" style="width: 60%">
 
 		<h1>Confirmation</h1>
-		<p>Room Type: <strong><%=$room_type.capitalize%></strong></p>
-		<p>Duration of Stay: <%=$arrive%> - <%=$depart%></p>
-		<p>Guests: <%=$num_of_adults%> adults <%=$num_of_children%> children</p>
+		<p>Room Type: <strong><%=@room_type%></strong></p>
+		<p>Duration of Stay: <%=@arrive%> - <%=@depart%></p>
+		<p>Guests: <%=@num_of_adults%> adults <%=@num_of_children%> children</p>
 		
 		
-		<h1>Payment: $<%=$price%></h1>
+		<h1>Payment: $<%=@price%></h1>
 		
 		<form class="form-horizontal" action="/receipt">
 		<div class="form-group">

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get "bookings" => 'bookings#index'
   get '/log_in' => 'welcome#customer_log_in'
   post '/log_in' => 'welcome#customer_log_in'
-  get '/register' => 'welcome#customer_register'
+  get '/register' => 'customers#new'
   get '/staff_log_in' => 'welcome#staff_log_in'
   post '/staff_log_in' => 'welcome#staff_log_in'
   

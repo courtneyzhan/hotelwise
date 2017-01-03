@@ -17,6 +17,7 @@ class PagesController < ApplicationController
     @address_1 = params[:address_1]
     @address_2 = params[:address_2]
     @special_req = params[:special_req]
+    
     if @email_address != @confirm_email_address
       flash[:notice] = "Post successfully created"
     end
