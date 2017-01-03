@@ -26,7 +26,8 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     Room.all.each do |room| 
-      if (Booking.overlapping(room)).size == 0
+      @booking.room = room  
+      if (Booking.overlapping(@booking)).size == 0
         respond_to do |format|
           if @booking.save
             format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
@@ -36,9 +37,6 @@ class BookingsController < ApplicationController
             format.json { render json: @booking.errors, status: :unprocessable_entity }
           end
         end
-      else
-        format.html { render :new }
-        format.json { render json: @booking.errors, status: :unprocessable_entity }
       end
       
     end
