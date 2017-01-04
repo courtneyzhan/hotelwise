@@ -1,48 +1,56 @@
 
-	<div class="container" style="width: 60%">
-		<h1>Room Availability Check</h1>
+	<div class="container" style="width: 80%">
+		<h2>Room Availability Search</h2>
 
+<% flash.each do |key, value| %>
+      <div class="<%= flash_class(key) %>">
+            <%= value %>
+      </div>
+<% end %>
+		
+     <p>...</p>
+		 
 <%= form_tag("/availability_check", method: "POST", :class => "form-horizontal") do %>
 			<div class="form-group">
-				<label class="col-sm-3 control-label" for="inputEmail3">Number of Adults</label>
+				<label class="col-sm-4 control-label" for="inputEmail3">Number of Adults</label>
 
-				<div class="col-sm-9">
+				<div class="col-sm-7">
 					<input class="form-control" id="numofadult" name="numofadult" placeholder="Number of Adults" type="number">
 				</div>
 			</div>
 
 
 			<div class="form-group">
-				<label class="col-sm-3 control-label" for="inputEmail3">Number of Children</label>
+				<label class="col-sm-4 control-label" for="inputEmail3">Number of Children</label>
 
-				<div class="col-sm-9">
+				<div class="col-sm-7">
 					<input class="form-control" id="numofchildren" name="numofchildren" placeholder="Number of Children" type="number">
 				</div>
 			</div>
 
 
 			<div class="form-group">
-				<label class="col-sm-3 control-label" for="inputPassword3">Arrival Date</label>
+				<label class="col-sm-4 control-label" for="inputPassword3">Arrival Date</label>
 
-				<div class="col-sm-9">
+				<div class="col-sm-7">
 					<input class="form-control" id="arrive" name="arrive" placeholder="Arrival Date" type="text">
 				</div>
 			</div>
 
 
 			<div class="form-group">
-				<label class="col-sm-3 control-label" for="inputPassword3">Departure Date</label>
+				<label class="col-sm-4 control-label" for="inputPassword3">Departure Date</label>
 
-				<div class="col-sm-9">
-					<input class="form-control" id="depart" name="depart" placeholder="Departure Date" type="text">
+				<div class="col-sm-7">
+					<input class="form-control" id="depart" name="depart" placeholder="e.g. 2017-01-28" type="text">
 				</div>
 			</div>
 
 
 			<div class="form-group">
-				<label class="col-sm-3 control-label" for="inputPassword3">Room Type</label>
+				<label class="col-sm-4 control-label" for="inputPassword3">Room Type</label>
 
-				<div class="col-sm-9">
+				<div class="col-sm-7">
 					<select class ="form-control" id="roomtype" name="roomtype">
 						<option value="default">
 							--Select--
@@ -68,10 +76,14 @@
 			</div>
 
 			<div class="form-group">
-				<div class="col-sm-offset-3 col-sm-9">
-					<button class="btn btn-default" type="submit">Check</button>
+				<div class="col-sm-offset-4 col-sm-7">
+					<button class="btn btn-default btn-primary" type="submit">Check</button>
 				</div>
 			</div>
 
 <% end %>
 	</div>
+
+<div class="pull-right">
+<%= link_to 'create account first', '/log_in', :class => "btn" %>
+</div>

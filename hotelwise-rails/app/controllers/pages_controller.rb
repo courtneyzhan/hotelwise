@@ -22,7 +22,13 @@ class PagesController < ApplicationController
       flash[:notice] = "Post successfully created"
     end
   end
-  
+
+  # Add validation:
+  #  - customer count must be present
+  #  - arrival date must be present
+  #  - departure date ..
+  #  - before
+  #  - arrival date shall be future date (search rails date comparions. get Date.parse)
   def check
     puts "Received params: #{params.inspect}"
     @num_of_adults = params[:numofadult]
@@ -30,6 +36,32 @@ class PagesController < ApplicationController
     @arrive = params[:arrive]
     @depart= params[:depart]
     @room_type= params[:roomtype]
+    
+    if @num_of_adults.nil? || @num_of_adults.to_i < 1
+      redirect_to "/search", :alert => "At least one adult be present."
+      return
+    end  
+    if @arrive.nil? || @arrive.blank?
+      redirect_to "/search", :alert => "Please enter the arrival date"
+      return
+    end
+    if @depart.nil? || @depart.blank?
+      redirect_to "/search", :alert => "Please enter the departure date"
+      return
+    end
+    @arrive = Date.strptime(@arrive, "%Y-%m-%d")
+    @depart = Date.strptime(@depart, "%Y-%m-%d")
+    if @arrive.past?()
+      redirect_to "/search", :alert => "You must arrive after today's date"
+      return
+    end
+    
+    if @depart <= @arrive
+      redirect_to "/search", :alert => "You must depart after arrival date"
+      return
+    end
+    puts "Arrive param: #{@arrive}"
+    
     if @room_type == "singleov"
       @room_type = "Single with Ocean View"
       @price = 30
