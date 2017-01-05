@@ -2,7 +2,7 @@ class WelcomeController < ApplicationController
 
   def home
     # for staff, visit "/admin"
-    redirect_to "search"
+    redirect_to "/search"
   end
   
   def customer_log_in
