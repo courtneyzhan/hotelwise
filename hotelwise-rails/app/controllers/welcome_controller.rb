@@ -9,7 +9,8 @@ class WelcomeController < ApplicationController
     if request.post?
       @email = params[:email]
       @password = params[:password]
-      if Customer.where(:email => @email, :password => @password).first
+      if customer = Customer.where(:email => @email, :password => @password).first
+        session[:customer_id] = customer.id
         redirect_to "/search"
       end  
     end
@@ -19,9 +20,11 @@ class WelcomeController < ApplicationController
     if request.post?
       @username = params[:username]
       @password = params[:password]
-      if User.where(:login => @username, :password => @password).first
+      if user = User.where(:login => @username, :password => @password).first
+        session[:user_id] = user.id        
         redirect_to "/bookings"
       end  
     end
   end
+  
 end

@@ -1,6 +1,14 @@
 class PagesController < ApplicationController
   layout "application"
+
+  before_action :set_customer
+  
   def home
+  end
+  
+  
+  def search
+
   end
   
   def confirmation
@@ -30,6 +38,7 @@ class PagesController < ApplicationController
   #  - before
   #  - arrival date shall be future date (search rails date comparions. get Date.parse)
   def check
+
     puts "Received params: #{params.inspect}"
     @num_of_adults = params[:numofadult]
     @num_of_children = params[:numofchildren]

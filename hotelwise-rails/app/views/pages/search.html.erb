@@ -2,6 +2,10 @@
 	<div class="container" style="width: 80%">
 		<h2>Room Availability Search</h2>
 
+<% if @customer %>
+  <%= @customer.first_name %>
+<% end %>
+
 <% flash.each do |key, value| %>
       <div class="<%= flash_class(key) %>">
             <%= value %>
@@ -52,25 +56,9 @@
 
 				<div class="col-sm-7">
 					<select class ="form-control" id="roomtype" name="roomtype">
-						<option value="default">
-							--Select--
-						</option>
-						
-						<option value="single">
-							Single
-						</option>
-
-						<option value="singleov">
-							Single Ocean View
-						</option>
-
-						<option value="double">
-							Double
-						</option>
-
-						<option value="family">
-							Family
-						</option>
+							<% RoomType.all.each do |room_type| %>
+						<option value="<%=room_type.id%>"><%=room_type.name%></option>
+						<% end %>
 					</select>
 				</div>
 			</div>
@@ -85,5 +73,7 @@
 	</div>
 
 <div class="pull-right">
+<%= link_to 'Login', '/log_in', :class => "btn" %>
+or 
 <%= link_to 'create account first', '/customers/new', :class => "btn" %>
 </div>

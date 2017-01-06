@@ -1,58 +1,22 @@
-<div class="container" style="width: 60%">
+<div  style="width: 90%">
 
-	<h1>Available Rooms<%=@num_of_adults%></h1>
+	<h2>Available Rooms</h2>
+<% if @customer %>
+  <%= @customer.first_name %>
+<% end %>
+<p>Booking <%=@num_of_adults%> people between dates: ...</p>
+
 <table class="table table-hover">
-	<tr>
-		<td><img src="https://placeholdit.imgix.net/~text?txtsize=28&bg=0099ff&txtclr=ffffff&txt=300%C3%97300&w=300&h=300&fm=png" style="width: 100px"></td>
-		<td>Single with Ocean View</td>
-		<td>
-			<ul>
-			  <li>TV</li>
-			  <li>1 Single Bed</li>
-			  <li>Balcony with Ocean View</li>
-		  </ul>
-		</td>
-		<td>$30/day</td>
-		<td><a href="/single-ov">Book Now</a></td>
-	</tr>
 	
+	<% RoomType.all.each do |room_type| %>
 	<tr>
-		<td><img src="https://placeholdit.imgix.net/~text?txtsize=28&bg=0099ff&txtclr=ffffff&txt=300%C3%97300&w=300&h=300&fm=png" style="width: 100px"></td>
-		<td>Single</td>
-		<td>
-		  <ul>
-			  <li>TV</li>
-			  <li>1 Single Bed</li>
-	    </ul>
-		</td>
-		<td>$25/day</td>
-		<td><a href="/single">Book Now</a></td>
+		<td><%= image_tag(room_type.name.downcase.gsub(" ", "-") + ".jpg", :width => 200) %></td>
+		
+		<td><%= room_type.name %></td>
+		<td><%= raw room_type.facility %></td>
+		<td><%= number_to_currency room_type.price %></td>
+		<td><%= link_to "Book Now", "/booking?room_type=#{room_type.id}" %></td>
 	</tr>
-	
-	<tr>
-		<td><img src="https://placeholdit.imgix.net/~text?txtsize=28&bg=0099ff&txtclr=ffffff&txt=300%C3%97300&w=300&h=300&fm=png" style="width: 100px"></td>
-		<td>Double</td>
-		<td>
-			<ul>
-			  <li>TV</li>
-			  <li>1 Double Bed</li>
-		  </ul>
-	  </td>
-		<td>$40/day</td>
-		<td><a href="/double">Book Now</a></td>
-	</tr>
-	
-	<tr>
-		<td><img src="https://placeholdit.imgix.net/~text?txtsize=28&bg=0099ff&txtclr=ffffff&txt=300%C3%97300&w=300&h=300&fm=png" style="width: 100px"></td>
-		<td>Family</td>
-		<td>
-			<ul>
-			  <li>TV</li>
-			  <li>2 Double Beds</li>
-		  </ul>
-		</td>
-		<td>$50/day</td>
-		<td><a href="/family">Book Now</a></td>
-	</tr>
+	<% end %>
+
 </table>
-</div>

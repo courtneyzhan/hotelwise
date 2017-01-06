@@ -1,0 +1,11 @@
+1. in Seed, set email for customers
+
+2. in search page, using RoomType.all to populate select list options
+
+3. on search page, in customer logged in already, show the custom message "John, fill the below below to find the rooms"
+	  session[:customer_id] is set after logs in
+		
+4. Find 4 room images and put them under as app/assets/images, named as "single-with-ocean-view.png" (or jpg)
+   Change the page 
+    /availability_check 
+	 to display room types
