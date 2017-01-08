@@ -1,24 +1,19 @@
-OBJECTIVE: book a room for already logged in user and already selected room type
+OBJECTIVE: Get booking (for logined user and specifc room type) working, staff can view can cancel booking
 
-1. Display all your entered attributes on Aavailable rooms
-    (number of adults, arrive/depart dates, room type)
+1. Enhance seed:
+    -  add more rooms for each room type (except only one room for ocean view) 
+    -  using dynamic date to seed booking data, check_in_date: Date.yesterday.strftime('%Y-%m-%d')
 
-2. Set the above attributes in hidden attributes, such as 
-    <input type="hidden" name="booking[check_in_date]" />
-    <input type="hidden" name="booking[customer_id]" />
-	 ...
-	 	
-3. Change "Book Now" into a button in a form (currently a link, GET, however it shall be a form submit)
-   <%= form_for(@booking) do |f| %>
+	The purpose: the create easy to test scenarios
+    * one room type with one room already books (oceanview)
+		* one room type with mulitple rooms only one room available
+	  * one room type with mulitple rooms, but no bookings for them at all
+    * one romm with with multiple rooms all booked
+		
 
-    <!-- display room type details -->
-    <!-- hidden attributes -->
-		<!- Book Now button -->
-   <% end %>
-	 
-	 On submit form, it shall inovice BookingsControoller's create function
-	 
-	 it shall be create a booking in database
-	 
-	 
-4. Question, what shall next page goes to? Payment . But wait, the booking shall not be valid as it is not paid. So shall add a status field to Booking. The non-paid ones can set set the status "pending". Change migration and update the code accordingly.
+2. Merge /search (view) to /bookings/new (view), i.e, Bookings#new will handle search
+
+3. I implemented /reset (have a look at the def reset in WelcomeController), which resets the database to seeded; 
+
+4. Write selenium automated tests (login as customer, logout, register customer, muiltple booking cases ..., staff login) in TestWise.
+
