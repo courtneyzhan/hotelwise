@@ -20,6 +20,7 @@ customer_1 = Customer.create(first_name: "John", last_name: "Su", dob: 19990325,
 customer_2 = Customer.create(first_name: "Mary", last_name: "Smith", dob: 20010920, address_1: "2 Generic Street", address_2: "Suburb", email: "a@b.com", password: "secret", credit_card_number: "348592712", credit_card_expiry_month: "01", credit_card_expiry_year: "01")
 customer_3 = Customer.create(first_name: "Karen", last_name: "Green", dob: 20000101, address_1: "4 Generic Street", address_2: "Suburb", email: "kgree@email.com", password: "secret", credit_card_number: "84237201", credit_card_expiry_month: "01", credit_card_expiry_year: "01")
 
+# invalid, missing room_type, room, num people ,,...
 booking_1 = Booking.create(room_id: "1", customer_id: "1", check_in_date: 20160101, check_out_date: 20160103)
 booking_2 = Booking.create(room_id: "2", customer_id: "1", check_in_date: 20160101, check_out_date: 20160103)
 booking_3 = Booking.create(room_id: "2", customer_id: "2", check_in_date: 20160102, check_out_date: 20160103)

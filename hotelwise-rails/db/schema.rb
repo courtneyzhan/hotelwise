@@ -14,11 +14,15 @@ ActiveRecord::Schema.define(version: 20170105041029) do
 
   create_table "bookings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "room_id"
+    t.integer  "room_type_id"
     t.integer  "customer_id"
     t.date     "check_in_date"
     t.date     "check_out_date"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.decimal  "total_price",     precision: 8, scale: 2, default: "0.0"
+    t.integer  "num_of_adults"
+    t.integer  "num_of_children"
+    t.datetime "created_at",                                              null: false
+    t.datetime "updated_at",                                              null: false
   end
 
   create_table "customers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

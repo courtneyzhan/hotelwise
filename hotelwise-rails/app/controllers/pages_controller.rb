@@ -70,21 +70,9 @@ class PagesController < ApplicationController
       return
     end
     puts "Arrive param: #{@arrive}"
+
+    @room_type = RoomType.where(:id => params[:roomtype]).first
     
-    if @room_type == "singleov"
-      @room_type = "Single with Ocean View"
-      @price = 30
-      redirect_to '/single-ov'
-    elsif @room_type == "single"
-      @price = 25
-      redirect_to '/single'
-    elsif @room_type == "double"
-      @price = 40
-      redirect_to '/double'
-    elsif @room_type == "family"
-      @price = 50
-      redirect_to '/family'
-    end
   end
     
 end

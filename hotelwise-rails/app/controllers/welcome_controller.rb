@@ -27,4 +27,9 @@ class WelcomeController < ApplicationController
     end
   end
   
+  def customer_log_out
+      session[:customer_id] = nil
+      redirect_to "/search"
+  end
+  
 end

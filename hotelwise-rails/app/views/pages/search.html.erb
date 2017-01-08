@@ -37,7 +37,7 @@
 				<label class="col-sm-4 control-label" for="inputPassword3">Arrival Date</label>
 
 				<div class="col-sm-7">
-					<input class="form-control" id="arrive" name="arrive" placeholder="Arrival Date" type="text">
+					<input class="form-control" id="arrive" name="arrive" placeholder="Arrival Date" type="text" value="<%=Date.tomorrow%>">
 				</div>
 			</div>
 
@@ -56,9 +56,10 @@
 
 				<div class="col-sm-7">
 					<select class ="form-control" id="roomtype" name="roomtype">
+							<option value=""> - </option>
 							<% RoomType.all.each do |room_type| %>
-						<option value="<%=room_type.id%>"><%=room_type.name%></option>
-						<% end %>
+							<option value="<%=room_type.id%>"><%=room_type.name%></option>
+							<% end %>
 					</select>
 				</div>
 			</div>
@@ -72,8 +73,13 @@
 <% end %>
 	</div>
 
+
 <div class="pull-right">
-<%= link_to 'Login', '/log_in', :class => "btn" %>
-or 
-<%= link_to 'create account first', '/customers/new', :class => "btn" %>
+	<%if @customer%>
+		<%= link_to 'Log out', '/log_out', :class => "btn" %>
+	<%else%>
+		<%= link_to 'Login', '/log_in', :class => "btn" %>
+		or 
+		<%= link_to 'create account first', '/customers/new', :class => "btn" %>
+	<%end%>
 </div>

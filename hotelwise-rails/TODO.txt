@@ -1,11 +1,24 @@
-1. in Seed, set email for customers
+OBJECTIVE: book a room for already logged in user and already selected room type
 
-2. in search page, using RoomType.all to populate select list options
+1. Display all your entered attributes on Aavailable rooms
+    (number of adults, arrive/depart dates, room type)
 
-3. on search page, in customer logged in already, show the custom message "John, fill the below below to find the rooms"
-	  session[:customer_id] is set after logs in
-		
-4. Find 4 room images and put them under as app/assets/images, named as "single-with-ocean-view.png" (or jpg)
-   Change the page 
-    /availability_check 
-	 to display room types
+2. Set the above attributes in hidden attributes, such as 
+    <input type="hidden" name="booking[check_in_date]" />
+    <input type="hidden" name="booking[customer_id]" />
+	 ...
+	 	
+3. Change "Book Now" into a button in a form (currently a link, GET, however it shall be a form submit)
+   <%= form_for(@booking) do |f| %>
+
+    <!-- display room type details -->
+    <!-- hidden attributes -->
+		<!- Book Now button -->
+   <% end %>
+	 
+	 On submit form, it shall inovice BookingsControoller's create function
+	 
+	 it shall be create a booking in database
+	 
+	 
+4. Question, what shall next page goes to? Payment . But wait, the booking shall not be valid as it is not paid. So shall add a status field to Booking. The non-paid ones can set set the status "pending". Change migration and update the code accordingly.

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get '/staff_log_in' => 'welcome#staff_log_in'
   get '/admin' => 'welcome#staff_log_in'
   post '/staff_log_in' => 'welcome#staff_log_in'
+  get '/log_out' => 'welcome#customer_log_out'
     
   post '/availability_check' => 'pages#check'
   get '/single-ov' => 'pages#customer_register'

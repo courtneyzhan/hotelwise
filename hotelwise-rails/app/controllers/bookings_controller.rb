@@ -1,6 +1,7 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :edit, :update, :destroy]
 
+  
   # GET /bookings
   # GET /bookings.json
   def index
@@ -20,6 +21,11 @@ class BookingsController < ApplicationController
   # GET /bookings/1/edit
   def edit
   end
+  
+  # TODO: check user submitted room_Type date, ... 
+  def check
+    
+  end
 
   # POST /bookings
   # POST /bookings.json
@@ -30,10 +36,16 @@ class BookingsController < ApplicationController
       if (Booking.overlapping(@booking)).size == 0
         respond_to do |format|
           if @booking.save
-            format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
+            format.html {
+               redirect_to @booking, notice: 'Booking was successfully created.' 
+               return;
+            }
             format.json { render :show, status: :created, location: @booking }
           else
-            format.html { render :new }
+            format.html { 
+              render :new 
+              return
+            }
             format.json { render json: @booking.errors, status: :unprocessable_entity }
           end
         end
@@ -68,6 +80,7 @@ class BookingsController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_booking
       @booking = Booking.find(params[:id])
@@ -75,6 +88,6 @@ class BookingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def booking_params
-      params.require(:booking).permit(:room_id, :customer_id, :check_in_date, :check_out_date)
+      params.require(:booking).permit(:room_id, :room_type_id, :customer_id, :check_in_date, :check_out_date, :total_price, :num_of_adults, :num_of_children)
     end
 end
