@@ -1,0 +1,48 @@
+<div  style="width: 90%">
+
+	<h2>Available Rooms</h2>
+
+	<% if @customer %>
+	  <%= @customer.first_name %>
+	<% end %>
+
+<%= form_for(@booking ||= Booking.new) do |f| %>
+
+	<p>Booking a <%=@room_type.name%> Room for <%=@num_of_adults.to_i + @num_of_children.to_i%> people for <%=(@depart - @arrive).to_i%> days (<%=@arrive%> - <%=@depart%>)</p>
+	<input type="hidden" name="booking[check_in_date]" value="<%=@arrive%>"/>
+	<input type="hidden" name="booking[check_out_date]" value="<%=@depart%>"/>
+	<input type="hidden" name="booking[num_of_adults]" value="<%=@num_of_adults%>"/>
+	<input type="hidden" name="booking[num_of_children]" value="<%=@num_of_children%>"/>
+	<input type="hidden" name="booking[room_type_id]" value="<%=@room_type.id%>"/>
+	<input type="hidden" name="booking[customer_id]" value="<%=@customer.id%>"/>
+
+	<table class="table table-hover">
+	
+		<% if @room_type %>
+		<tr>
+			<td><%= image_tag(@room_type.name.downcase.gsub(" ", "-") + ".jpg", :width => 200) %></td>
+	
+			<td><%= @room_type.name %></td>
+			<td><%= raw @room_type.facility %></td>
+			<td><%= number_to_currency @room_type.price %></td>
+			<td><div class="actions">
+	    <%= f.submit %>
+	  </div></td>
+		</tr>
+		<% else %>
+			<% RoomType.all.each do |room_type| %>
+			<tr>
+				<td><%= image_tag(room_type.name.downcase.gsub(" ", "-") + ".jpg", :width => 200) %></td>
+		
+				<td><%= room_type.name %></td>
+				<td><%= raw room_type.facility %></td>
+				<td><%= number_to_currency room_type.price %></td>
+				<td>  <div class="actions">
+	    <%= f.submit %>
+	  </div></td>
+			</tr>
+			<% end %>
+		<% end %>
+	</table>
+
+<% end %>

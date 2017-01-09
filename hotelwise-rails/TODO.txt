@@ -1,3 +1,22 @@
+UI Tests Refactoring
+
+1. Separate UI tests to different test script files, for example, customer_register_spec.rb, booking_availability_check_spec, staff_login_spec
+2. Extract to page objects (see Practical Web test Automation book)
+
+Core business logic: introduce payment and add status to booking
+
+After booking created, it is not active until payment is received. So add a status column to Booking model, when it is newly created, set status to "pending". 
+
+Payment Model shall belongs to customer, booking (means has coumsn customer_id, :booking_id) and status: such as value "Fully paid"
+
+If payment is applied (after_save) and fully paid (bigger than the total price of a booking), change booking status to "active". On UI, displaying receipt. 
+
+
+
+Previous 
+========
+
+
 OBJECTIVE: Get booking (for logined user and specifc room type) working, staff can view can cancel booking
 
 1. Enhance seed:
@@ -5,7 +24,7 @@ OBJECTIVE: Get booking (for logined user and specifc room type) working, staff c
     -  using dynamic date to seed booking data, check_in_date: Date.yesterday.strftime('%Y-%m-%d')
 
 	The purpose: the create easy to test scenarios
-    * one room type with one room already books (oceanview)
+    * one room type with one room already booked (oceanview)
 		* one room type with mulitple rooms only one room available
 	  * one room type with mulitple rooms, but no bookings for them at all
     * one romm with with multiple rooms all booked
