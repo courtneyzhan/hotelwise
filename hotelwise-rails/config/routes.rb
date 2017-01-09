@@ -10,7 +10,7 @@ Rails.application.routes.draw do
 
   get "reset" => "welcome#reset" # reset the database
   
-  get "search" => 'pages#search'
+  get "search" => 'bookings#new'
   get "bookings" => 'bookings#index'
   get '/log_in' => 'welcome#customer_log_in'
   post '/log_in' => 'welcome#customer_log_in'
@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   post '/staff_log_in' => 'welcome#staff_log_in'
   get '/log_out' => 'welcome#customer_log_out'
     
-  post '/availability_check' => 'pages#check'
+  post '/bookings/check' => 'bookings#check'
   get '/single-ov' => 'pages#customer_register'
   get '/single' => 'pages#customer_register'
   get '/double' => 'pages#customer_register'

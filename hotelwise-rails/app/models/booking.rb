@@ -14,7 +14,8 @@ class Booking < ApplicationRecord
 
    # Return a scope for all interval overlapping the given interval, including the given interval itself
    scope :overlapping, lambda { |interval| 
-    where("customer_id <> ? AND room_id = ? AND (DATEDIFF(check_in_date, ?) * DATEDIFF(?, check_out_date)) >= 0", interval.id, interval.room_id, interval.check_out_date, interval.check_in_date)
+    # where("customer_id <> ? AND room_id = ? AND (DATEDIFF(check_in_date, ?) * DATEDIFF(?, check_out_date)) >= 0", interval.id, interval.room_id, interval.check_out_date, interval.check_in_date)
+    where("room_id = ? AND (DATEDIFF(check_in_date, ?) * DATEDIFF(?, check_out_date)) >= 0",  interval.room_id, interval.check_out_date, interval.check_in_date)
    }
 
   

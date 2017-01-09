@@ -1,5 +1,6 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :edit, :update, :destroy]
+  before_action :set_customer
 
   
   # GET /bookings
@@ -22,16 +23,12 @@ class BookingsController < ApplicationController
   def edit
   end
   
-  # TODO: check user submitted room_Type date, ... 
-  def check
-    
-  end
 
   # POST /bookings
   # POST /bookings.json
   def create
     @booking = Booking.new(booking_params)
-    Room.all.each do |room| 
+    Room.where(:room_type_id => @booking.room_type_id).each do |room| 
       @booking.room = room  
       if (Booking.overlapping(@booking)).size == 0
         respond_to do |format|
@@ -77,6 +74,68 @@ class BookingsController < ApplicationController
       format.html { redirect_to bookings_url, notice: 'Booking was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+  
+  def check
+
+    puts "Received params: #{params.inspect}"
+    @num_of_adults = params[:numofadult]
+    @num_of_children = params[:numofchildren]
+    @arrive = params[:arrive]
+    @depart= params[:depart]
+    @room_type= params[:roomtype]
+    
+    if @num_of_adults.nil? || @num_of_adults.to_i < 1
+      redirect_to "/search", :alert => "At least one adult be present."
+      return
+    end  
+    if @arrive.nil? || @arrive.blank?
+      redirect_to "/search", :alert => "Please enter the arrival date"
+      return
+    end
+    if @depart.nil? || @depart.blank?
+      redirect_to "/search", :alert => "Please enter the departure date"
+      return
+    end
+    @arrive = Date.strptime(@arrive, "%Y-%m-%d")
+    @depart = Date.strptime(@depart, "%Y-%m-%d")
+    if @arrive.past?()
+      redirect_to "/search", :alert => "You must arrive after today's date"
+      return
+    end
+    
+    if @depart <= @arrive
+      redirect_to "/search", :alert => "You must depart after arrival date"
+      return
+    end
+    
+    # after simple validation, now check availalbity 
+    @possible_new_booking = Booking.new
+    @possible_new_booking.num_of_adults = @num_of_adults
+    @possible_new_booking.num_of_children = @num_of_children
+    @possible_new_booking.check_in_date = @arrive
+    @possible_new_booking.check_out_date = @depart
+    @possible_new_booking.room_type_id = @room_type
+    puts "\n\n\n possilble new from room type |#{@room_type}| => #{@possible_new_booking.inspect}"
+    
+    @room_type = RoomType.where(:id => params[:roomtype]).first
+    @has_vacancy = false
+    Room.where(:room_type_id => @room_type).each do |room| 
+      @possible_new_booking.room = room  
+      if (Booking.overlapping(@possible_new_booking)).size == 0
+        @has_vacancy = true
+        break
+      end      
+    end
+    
+    if @has_vacancy
+      # go to next page
+      
+    else
+      # got search page with error
+      redirect_to "/search", alert: "No rooms available"
+    end
+    
   end
 
   private
