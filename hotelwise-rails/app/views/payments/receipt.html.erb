@@ -1,0 +1,16 @@
+<div class="container" style="width: 60%">
+	<h1>Receipt</h1>
+	<p><strong>First Name: </strong><%=@booking.customer.first_name%></p>
+	<p><strong>Last Name: </strong><%=@booking.customer.last_name%></p>
+	<p><strong>Number of Adults: </strong><%=@booking.num_of_adults%></p>
+	<p><strong>Number of Children: </strong><%=@booking.num_of_children%></p>
+	<p><strong>Duration of Stay: </strong><%=(@booking.check_out_date - @booking.check_in_date).to_i%> days</p>
+	<p><strong>Arrival Date: </strong><%=@booking.check_in_date%></p>
+	<p><strong>Departure Date: </strong><%=@booking.check_out_date%></p>
+	<p><strong>Room Type: </strong><%=@booking.room_type.name%></p>
+	<p><strong>Amount Paid: </strong> $<%=@payment.amount%></p>
+	
+	<div class="col-sm-offset-3 col-sm-9">
+		<button class="btn btn-default" type="submit">OK</button>
+	</div>
+</div>

@@ -1,0 +1,43 @@
+<div class="container" style="width: 60%">
+
+		<h1>Confirmation</h1>
+				
+		<p><strong>Room Type: </strong><%= @booking.room_type.name %></p>
+		<p><strong>Duration of Stay:</strong> <%=@booking.check_in_date%> - <%=@booking.check_out_date%></p>
+		<p><strong>Guests: </strong><%=@booking.num_of_adults%> adults <%=@booking.num_of_children%> children</p>
+		
+		
+		<h1>Payment: $<%=@booking.total_price%></h1>
+		
+		<%= form_tag("/bookings/#{@booking.id}/payment", method: "POST", class: "form-horizontal") do %>
+		<div class="form-group">
+			<label class="col-sm-3 control-label" for="inputPassword3">Credit Card Number</label>
+
+			<div class="col-sm-9">
+				<input class="form-control" id="credit_card_number" name="credit_card_number" placeholder="Credit Card Number" type="number">
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label class="col-sm-3 control-label" for="inputPassword3">Credit Card Verification Number</label>
+
+			<div class="col-sm-9">
+				<input class="form-control" id="credit_card_verification" name="credit_card_verification" placeholder="Credit Card Verification Number" type="number">
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label class="col-sm-3 control-label" for="inputPassword3">Credit Card Expiry Date</label>
+
+			<div class="col-sm-9">
+				<input class="form-control" id="credit_card_expiry" name="credit_card_expiry" placeholder="Credit Card Expiry Date" type="text">
+			</div>
+		</div>
+		
+			<div class="form-group">
+				<div class="col-sm-offset-3 col-sm-9">
+					<button class="btn btn-default" type="submit" id="continue">Continue</button>
+				</div>
+			</div>
+		<%end%>
+	</div>
