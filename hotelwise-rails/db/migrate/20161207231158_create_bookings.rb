@@ -9,6 +9,7 @@ class CreateBookings < ActiveRecord::Migration[5.0]
       t.decimal :total_price, precision: 8, scale: 2, default: 0.0
       t.integer :num_of_adults
       t.integer :num_of_children
+      t.string :paid_status
       t.timestamps
     end
   end

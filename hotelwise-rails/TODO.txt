@@ -7,7 +7,7 @@ Core business logic: introduce payment and add status to booking
 
 After booking created, it is not active until payment is received. So add a status column to Booking model, when it is newly created, set status to "pending". 
 
-Payment Model shall belongs to customer, booking (means has coumsn customer_id, :booking_id) and status: such as value "Fully paid"
+Payment Model shall belongs to customer, booking (means has column ustomer_id, :booking_id) and status: such as value "Fully paid"
 
 If payment is applied (after_save) and fully paid (bigger than the total price of a booking), change booking status to "active". On UI, displaying receipt. 
 

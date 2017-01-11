@@ -17,159 +17,48 @@ describe "New Specification" do
   end
 
   it "Customer can login " do
-    driver.find_element(:link_text, "Login").click
+    search_page = SearchPage.new(browser)
+    search_page.click_login_link("Login")
     sleep 0.5
-    driver.find_element(:id, "email").send_keys("jsu@email.com")
-    driver.find_element(:id, "password").send_keys("asdf")
-    driver.find_element(:id, "sign_in").click
+    login_page = LoginPage.new(browser)
+    login_page.enter_email("jsu@email.com")
+    login_page.enter_password("asdf")
+    login_page.click_sign_in_button
     expect(driver.page_source).to include("John")
   end
 
   it "Customer can log out" do
-    driver.find_element(:link_text, "Login").click
+    search_page = SearchPage.new(browser)
+    search_page.click_login_link("Login")
     sleep 0.5
-    driver.find_element(:id, "email").send_keys("jsu@email.com")
-    driver.find_element(:id, "password").send_keys("asdf")
-    driver.find_element(:id, "sign_in").click
+    login_page = LoginPage.new(browser)
+    login_page.enter_email("jsu@email.com")
+    login_page.enter_password("asdf")
+    login_page.click_sign_in_button
     expect(driver.page_source).to include("John")
-    driver.find_element(:link_text, "Log out").click
+    search_page.click_log_out("Log out")
     sleep 0.5
     expect(driver.page_source).to include("Login")
   end
 
   it "Register customer" do
-    driver.find_element(:link_text, "create account first").click
+    search_page = SearchPage.new(browser)
+
+    search_page.click_create_account("create account first")
     sleep 0.5
-    driver.find_element(:id, "customer_first_name").send_keys("Mary")
-    driver.find_element(:id, "customer_last_name").send_keys("Sue")
-    Selenium::WebDriver::Support::Select.new(driver.find_element(:id, "customer_dob_1i")).select_by(:text, "1997")
-    Selenium::WebDriver::Support::Select.new(driver.find_element(:id, "customer_dob_2i")).select_by(:text, "May")
-    Selenium::WebDriver::Support::Select.new(driver.find_element(:id, "customer_dob_3i")).select_by(:text, "5")
-    driver.find_element(:id, "customer_address_1").send_keys("1 Generic Street")
-    driver.find_element(:id, "customer_address_2").send_keys("Suburb")
-    driver.find_element(:id, "customer_email").send_keys("msue4@email.com")
-    driver.find_element(:id, "customer_password").send_keys("secret")
-    driver.find_element(:name, "commit").click
+    register_customer_page = RegisterCustomerPage.new(browser)
+    register_customer_page.enter_first_name("Mary")
+    register_customer_page.enter_last_name("Sue")
+    register_customer_page.select_dob_year("1997")
+    register_customer_page.select_dob_month("May")
+    register_customer_page.select_dob_day("5")
+    register_customer_page.enter_address_1("1 Generic Street")
+    register_customer_page.enter_address_2("Suburb")
+    register_customer_page.enter_email("msue4@email.com")
+    register_customer_page.enter_password("secret")
+    register_customer_page.click_create
     sleep 0.5
     expect(driver.page_source).to include("Customer was successfully created.")
-  end
-
-  it "Staff login" do
-    visit("/admin")
-    sleep 0.5
-    driver.find_element(:id, "username").send_keys("staff")
-    driver.find_element(:id, "password").send_keys("password")
-    driver.find_element(:id, "sign_in").click
-  end
-
-  it "Book a SOV Room" do
-    driver.find_element(:link_text, "Login").click
-    sleep 0.5
-    driver.find_element(:id, "email").send_keys("jsu@email.com")
-    driver.find_element(:id, "password").send_keys("asdf")
-    driver.find_element(:id, "sign_in").click
-    driver.find_element(:id, "numofadult").send_keys("1")
-    driver.find_element(:id, "numofchildren").send_keys("0")
-    driver.find_element(:id, "depart").send_keys("2017-01-13")
-    Selenium::WebDriver::Support::Select.new(driver.find_element(:id, "roomtype")).select_by(:text, "Single with Ocean View")
-    driver.find_element(:id, "check").click
-    sleep 0.5
-    expect(driver.page_source).to include("Available Rooms")
-    driver.find_element(:name, "commit").click
-    expect(driver.page_source).to include("Booking was successfully created.")
-  end
-
-  it "Double Book the Single with Ocean View room" do
-    driver.find_element(:link_text, "Login").click
-    sleep 0.5
-    driver.find_element(:id, "email").send_keys("jsu@email.com")
-    driver.find_element(:id, "password").send_keys("asdf")
-    driver.find_element(:id, "sign_in").click
-    driver.find_element(:id, "numofadult").send_keys("1")
-    driver.find_element(:id, "numofchildren").send_keys("0")
-    driver.find_element(:id, "depart").send_keys("2017-01-13")
-    Selenium::WebDriver::Support::Select.new(driver.find_element(:id, "roomtype")).select_by(:text, "Single with Ocean View")
-    driver.find_element(:id, "check").click
-    sleep 0.5
-    driver.find_element(:name, "commit").click
-    expect(driver.page_source).to include("Booking was successfully created.")
-    visit("/search")
-    sleep 0.5
-    driver.find_element(:id, "numofadult").send_keys("1")
-    driver.find_element(:id, "numofchildren").send_keys("0")
-    driver.find_element(:id, "depart").send_keys("2017-01-13")
-    Selenium::WebDriver::Support::Select.new(driver.find_element(:id, "roomtype")).select_by(:text, "Single with Ocean View")
-    driver.find_element(:id, "check").click
-    sleep 0.5
-    expect(driver.page_source).to include("No rooms available")
-  end
-
-  it "Single room has only one room available" do
-    driver.find_element(:link_text, "Login").click
-    sleep 0.5
-    driver.find_element(:id, "email").send_keys("jsu@email.com")
-    driver.find_element(:id, "password").send_keys("asdf")
-    driver.find_element(:id, "sign_in").click
-    driver.find_element(:id, "numofadult").send_keys("1")
-    driver.find_element(:id, "numofchildren").send_keys("0")
-    driver.find_element(:id, "depart").send_keys("2017-01-13")
-    Selenium::WebDriver::Support::Select.new(driver.find_element(:id, "roomtype")).select_by(:text, "Single")
-    driver.find_element(:id, "check").click
-    sleep 0.5
-    driver.find_element(:name, "commit").click
-    expect(driver.page_source).to include("Booking was successfully created.")
-  end
-
-  it "Family Rooms fully booked" do
-    driver.find_element(:link_text, "Login").click
-    sleep 0.5
-    driver.find_element(:id, "email").send_keys("jsu@email.com")
-    driver.find_element(:id, "password").send_keys("asdf")
-    driver.find_element(:id, "sign_in").click
-    driver.find_element(:id, "numofadult").send_keys("1")
-    driver.find_element(:id, "numofchildren").send_keys("0")
-    driver.find_element(:id, "depart").send_keys("2017-01-13")
-    Selenium::WebDriver::Support::Select.new(driver.find_element(:id, "roomtype")).select_by(:text, "Family")
-    driver.find_element(:id, "check").click
-    sleep 0.5
-    driver.find_element(:name, "commit").click
-    expect(driver.page_source).to include("Booking was successfully created.")
-    visit("/search")
-    sleep 0.5
-    driver.find_element(:id, "numofadult").send_keys("1")
-    driver.find_element(:id, "numofchildren").send_keys("0")
-    driver.find_element(:id, "depart").send_keys("2017-01-13")
-    Selenium::WebDriver::Support::Select.new(driver.find_element(:id, "roomtype")).select_by(:text, "Family")
-    driver.find_element(:id, "check").click
-    sleep 0.5
-    driver.find_element(:name, "commit").click
-    expect(driver.page_source).to include("Booking was successfully created.")
-  end
-
-  it "Double Room, both rooms available" do
-    driver.find_element(:link_text, "Login").click
-    sleep 0.5
-    driver.find_element(:id, "email").send_keys("jsu@email.com")
-    driver.find_element(:id, "password").send_keys("asdf")
-    driver.find_element(:id, "sign_in").click
-    driver.find_element(:id, "numofadult").send_keys("1")
-    driver.find_element(:id, "numofchildren").send_keys("0")
-    driver.find_element(:id, "depart").send_keys("2017-01-13")
-    Selenium::WebDriver::Support::Select.new(driver.find_element(:id, "roomtype")).select_by(:text, "Single")
-    driver.find_element(:id, "check").click
-    sleep 0.5
-    driver.find_element(:name, "commit").click
-    expect(driver.page_source).to include("Booking was successfully created.")
-    visit("/search")
-    sleep 0.5
-    driver.find_element(:id, "numofadult").send_keys("1")
-    driver.find_element(:id, "numofchildren").send_keys("0")
-    driver.find_element(:id, "depart").send_keys("2017-01-13")
-    Selenium::WebDriver::Support::Select.new(driver.find_element(:id, "roomtype")).select_by(:text, "Single")
-    driver.find_element(:id, "check").click
-    sleep 0.5
-    driver.find_element(:name, "commit").click
-    expect(driver.page_source).to include("Booking was successfully created.")
   end
 
 end

@@ -1,3 +1,0 @@
-   <%=if overlaps?(b1, b2) == true 
-     puts "woelrjwl"
-   end%>

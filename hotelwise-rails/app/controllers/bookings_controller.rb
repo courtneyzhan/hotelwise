@@ -34,7 +34,7 @@ class BookingsController < ApplicationController
         respond_to do |format|
           if @booking.save
             format.html {
-               redirect_to @booking, notice: 'Booking was successfully created.' 
+               redirect_to "/bookings/#{@booking.id}/payment", notice: 'Booking was successfully created.' 
                return;
             }
             format.json { render :show, status: :created, location: @booking }
@@ -129,12 +129,32 @@ class BookingsController < ApplicationController
     end
     
     if @has_vacancy
-      # go to next page
-      
+      # show check page      
     else
       # got search page with error
       redirect_to "/search", alert: "No rooms available"
     end
+    
+  end
+  
+  def payment
+    @booking = Booking.where(:id => params[:id]).first
+    if request.post? # post: user submit form
+      # Create Payment
+      # Set Booking Status: 
+      
+      puts "\n\n CREATE PAY #{@booking.inspect}"
+      @payment = Payment.create!(:customer_id => @booking.customer_id, :booking_id => @booking.id, :status => "Paid", :amount => @booking.total_price, :receipt_id => @booking.id)
+      @booking.paid_status = "Paid"
+      @booking.save
+      redirect_to "/payments/#{@payment.id}/receipt"
+    else  # get
+      # just go to payment
+    end
+  end
+  
+  def receipt    
+    @booking = Booking.where(:id => params[:id]).first
     
   end
 

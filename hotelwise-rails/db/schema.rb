@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170105041029) do
+ActiveRecord::Schema.define(version: 20170111033445) do
 
   create_table "bookings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "room_id"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20170105041029) do
     t.decimal  "total_price",     precision: 8, scale: 2, default: "0.0"
     t.integer  "num_of_adults"
     t.integer  "num_of_children"
+    t.string   "paid_status"
     t.datetime "created_at",                                              null: false
     t.datetime "updated_at",                                              null: false
   end
@@ -38,6 +39,16 @@ ActiveRecord::Schema.define(version: 20170105041029) do
     t.string   "credit_card_expiry_year"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+  end
+
+  create_table "payments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "customer_id"
+    t.integer  "booking_id"
+    t.integer  "receipt_id"
+    t.string   "status"
+    t.decimal  "amount",      precision: 8, scale: 2, default: "0.0"
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
   end
 
   create_table "room_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

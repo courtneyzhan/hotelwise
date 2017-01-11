@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   
+  get '/bookings/:id/payment' => 'bookings#payment'
+  post '/bookings/:id/payment' => 'bookings#payment'
+  get '/payments/:id/receipt' => 'payments#receipt'
+  
   resources :users
   resources :customers
   resources :bookings
@@ -21,11 +25,12 @@ Rails.application.routes.draw do
   get '/log_out' => 'welcome#customer_log_out'
     
   post '/bookings/check' => 'bookings#check'
+  
   get '/single-ov' => 'pages#customer_register'
   get '/single' => 'pages#customer_register'
   get '/double' => 'pages#customer_register'
   get '/family' => 'pages#not_available'
   get '/confirmation' => 'pages#confirmation'
-  get '/receipt' => 'pages#receipt'
+  #get '/receipt' => 'pages#receipt'
 
 end
