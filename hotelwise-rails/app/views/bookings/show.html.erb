@@ -1,14 +1,30 @@
 <p id="notice"><%= notice %></p>
-
 <p>
-  <strong>Room:</strong>
-  <%= @booking.room_id %>
+  <strong>First Name:</strong>
+  <%= @booking.customer.first_name %>
 </p>
 
 <p>
-  <strong>Customer:</strong>
-  <%= @booking.customer_id %>
+  <strong>Last Name:</strong>
+  <%= @booking.customer.last_name %>
 </p>
+
+<p>
+  <strong>Number of Adults:</strong>
+  <%= @booking.num_of_adults %>
+</p>
+
+<p>
+  <strong>Number of Children:</strong>
+  <%= @booking.num_of_children %>
+</p>
+
+<p>
+  <strong>Room Type:</strong>
+  <%= @booking.room_type.name %>
+</p>
+
+
 
 <p>
   <strong>Check in date:</strong>
