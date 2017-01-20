@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20170111033445) do
 
-  create_table "bookings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "bookings", force: :cascade do |t|
     t.integer  "room_id"
     t.integer  "room_type_id"
     t.integer  "customer_id"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20170111033445) do
     t.datetime "updated_at",                                              null: false
   end
 
-  create_table "customers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "customers", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.date     "dob"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20170111033445) do
     t.datetime "updated_at",               null: false
   end
 
-  create_table "payments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "payments", force: :cascade do |t|
     t.integer  "customer_id"
     t.integer  "booking_id"
     t.integer  "receipt_id"
@@ -51,16 +51,16 @@ ActiveRecord::Schema.define(version: 20170111033445) do
     t.datetime "updated_at",                                          null: false
   end
 
-  create_table "room_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "room_types", force: :cascade do |t|
     t.string   "name"
-    t.decimal  "price",                     precision: 8, scale: 2, default: "0.0"
+    t.decimal  "price",       precision: 8, scale: 2, default: "0.0"
     t.string   "facility"
-    t.text     "description", limit: 65535
-    t.datetime "created_at",                                                        null: false
-    t.datetime "updated_at",                                                        null: false
+    t.text     "description"
+    t.datetime "created_at",                                          null: false
+    t.datetime "updated_at",                                          null: false
   end
 
-  create_table "rooms", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "rooms", force: :cascade do |t|
     t.string   "room_number"
     t.string   "floor"
     t.integer  "room_type_id"
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 20170111033445) do
     t.datetime "updated_at",   null: false
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "login"
     t.string   "password"
     t.datetime "created_at", null: false
