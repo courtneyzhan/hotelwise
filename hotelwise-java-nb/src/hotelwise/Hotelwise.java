@@ -10,6 +10,8 @@ import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,6 +21,7 @@ public class Hotelwise {
 
     public static CustomerLogInForm loginForm;
     public static RoomSearchForm searchForm;
+    public static AvailableRoomsListForm roomsListForm;
 
     public static Connection conn;
 
@@ -38,11 +41,14 @@ public class Hotelwise {
         System.out.println("Opened database successfully");
 
         // TODO code application logic here
-        searchForm = new RoomSearchForm();
-            searchForm.setVisible(false);
-
         loginForm = new CustomerLogInForm();
         loginForm.setVisible(true);
+
+        searchForm = new RoomSearchForm();
+        searchForm.setVisible(false);
+
+        roomsListForm = new AvailableRoomsListForm();
+        roomsListForm.setVisible(false);
     }
 
     public static void login(String username, String password) {
@@ -82,19 +88,17 @@ public class Hotelwise {
         if (userFound) {
             // authenticated, go to next form
             loginForm.setVisible(false);
+            searchForm.setVisible(true);
         } else {
-
-            System.out.println("Display error on login form ...");
+            System.out.println("Failed to login");
             loginForm.setVisible(true);
-            loginForm.showLoginError();
-
         }
     }
 
     static void roomSearch(Integer numOfGuests, String arrivalDate, String departureDate, Integer roomType) throws Exception {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-        java.util.Date checkInDate = (java.util.Date)format.parse(arrivalDate);
-        java.util.Date checkOutDate = (java.util.Date)format.parse(departureDate);
+        java.util.Date checkInDate = (java.util.Date) format.parse(arrivalDate);
+        java.util.Date checkOutDate = (java.util.Date) format.parse(departureDate);
         long daysbetween = checkOutDate.getTime() - checkInDate.getTime();
         System.out.println("Number of guests: " + numOfGuests + ", Arrival Date: " + checkInDate + ", Departure Date: " + checkOutDate + ",  Room Type ID: " + roomType + ", Days between: " + TimeUnit.DAYS.convert(daysbetween, TimeUnit.MILLISECONDS));
 
@@ -113,6 +117,7 @@ public class Hotelwise {
                 int id = rs.getInt("id");
                 roomFound = true;
                 System.out.println("Room found: " + id);
+                roomsListForm.hidePanel(id);
 
             }
             rs.close();
@@ -130,6 +135,8 @@ public class Hotelwise {
         if (roomFound) {
             // authenticated, go to next form
             searchForm.setVisible(false);
+            roomsListForm.setVisible(true);
+            System.out.println("shown");
         } else {
 
             System.out.println("Display error on search form ...");

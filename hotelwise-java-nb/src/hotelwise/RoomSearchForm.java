@@ -5,6 +5,9 @@
  */
 package hotelwise;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author courtney
@@ -16,6 +19,8 @@ public class RoomSearchForm extends javax.swing.JFrame {
      */
     public RoomSearchForm() {
         initComponents();
+        unavailableTextField.setVisible(false);
+
     }
 
     /**
@@ -37,6 +42,7 @@ public class RoomSearchForm extends javax.swing.JFrame {
         arrivalTextField = new javax.swing.JTextField();
         departureTextField = new javax.swing.JTextField();
         numOfGuestsSpinner = new javax.swing.JSpinner();
+        unavailableTextField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,6 +65,9 @@ public class RoomSearchForm extends javax.swing.JFrame {
         jLabel9.setText("Room Type:");
 
         roomTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Single", "Single with Ocean View", "Double", "Family" }));
+
+        unavailableTextField.setEditable(false);
+        unavailableTextField.setText("Sorry there are no rooms of that type available.");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -89,13 +98,19 @@ public class RoomSearchForm extends javax.swing.JFrame {
                                     .addComponent(departureTextField)
                                     .addComponent(roomTypeComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(14, 14, 14))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(unavailableTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jLabel4)
-                .addGap(36, 36, 36)
+                .addGap(4, 4, 4)
+                .addComponent(unavailableTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(numOfGuestsSpinner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -120,7 +135,12 @@ public class RoomSearchForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
-        Hotelwise.roomSearch(Integer.parseInt(numOfGuestsSpinner.getValue().toString()), arrivalTextField.getText(), departureTextField.getText(), roomTypeComboBox.getSelectedIndex());
+        unavailableTextField.setVisible(true);
+        try {
+            Hotelwise.roomSearch(Integer.parseInt(numOfGuestsSpinner.getValue().toString()), arrivalTextField.getText(), departureTextField.getText(), roomTypeComboBox.getSelectedIndex());
+        } catch (Exception ex) {
+            Logger.getLogger(RoomSearchForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_searchButtonActionPerformed
 
     /**
@@ -169,5 +189,6 @@ public class RoomSearchForm extends javax.swing.JFrame {
     private javax.swing.JSpinner numOfGuestsSpinner;
     private javax.swing.JComboBox<String> roomTypeComboBox;
     private javax.swing.JButton searchButton;
+    private javax.swing.JTextField unavailableTextField;
     // End of variables declaration//GEN-END:variables
 }

@@ -123,10 +123,8 @@ public class CustomerLogInForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SignInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignInButtonActionPerformed
-
+        incorrectTextField.setVisible(true);
         Hotelwise.login(emailTextField.getText(), passwordField.getText());
-        Hotelwise.loginForm.setVisible(false);
-        Hotelwise.searchForm.setVisible(true);
     }//GEN-LAST:event_SignInButtonActionPerformed
 
     private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
