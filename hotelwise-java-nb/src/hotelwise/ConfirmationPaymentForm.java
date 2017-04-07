@@ -6,6 +6,8 @@
 
 package hotelwise;
 
+import hotelwise.model.RoomType;
+
 /**
  *
  * @author dominic
@@ -15,6 +17,8 @@ public class ConfirmationPaymentForm extends javax.swing.JFrame {
     /** Creates new form ConfirmationPaymentForm */
     public ConfirmationPaymentForm() {
         initComponents();
+        roomTypeTextField.setText(RoomType.findById(1).getName());
+        //priceTextField.setText(Float.toString(RoomType.findById(1).getPrice()));
     }
 
     /** This method is called from within the constructor to
@@ -41,6 +45,7 @@ public class ConfirmationPaymentForm extends javax.swing.JFrame {
         creditVerifyTextField = new javax.swing.JTextField();
         creditExpiryTextField = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,15 +59,35 @@ public class ConfirmationPaymentForm extends javax.swing.JFrame {
 
         jLabel9.setText("Duration of Stay:");
 
+        roomTypeTextField.setEditable(false);
+        roomTypeTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roomTypeTextFieldActionPerformed(evt);
+            }
+        });
+
         jLabel10.setText("Number of Guests:");
+
+        guestTextField.setEditable(false);
 
         jLabel11.setText("Credit Card Number:");
 
+        durationStayTextField.setEditable(false);
+        durationStayTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                durationStayTextFieldActionPerformed(evt);
+            }
+        });
+
+        priceTextField.setEditable(false);
         priceTextField.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
 
         jLabel12.setText("Credit Card Verification Number:");
 
         jLabel14.setText("Credit Card Expiry Date:");
+
+        jLabel7.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel7.setText("$");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -72,13 +97,8 @@ public class ConfirmationPaymentForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(90, 90, 90)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(115, 115, 115)
-                                .addComponent(priceTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE))))
+                        .addComponent(jLabel4)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -92,7 +112,7 @@ public class ConfirmationPaymentForm extends javax.swing.JFrame {
                                     .addComponent(roomTypeTextField)))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel12)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                                 .addComponent(creditVerifyTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -106,7 +126,12 @@ public class ConfirmationPaymentForm extends javax.swing.JFrame {
                                         .addComponent(guestTextField))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(103, 103, 103)
-                                        .addComponent(creditNumberTextField))))))
+                                        .addComponent(creditNumberTextField))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(priceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(34, 34, 34)
                         .addComponent(jLabel14)
@@ -136,7 +161,8 @@ public class ConfirmationPaymentForm extends javax.swing.JFrame {
                         .addGap(89, 89, 89))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(priceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel5)))
+                        .addComponent(jLabel5)
+                        .addComponent(jLabel7)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
@@ -154,6 +180,15 @@ public class ConfirmationPaymentForm extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void roomTypeTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roomTypeTextFieldActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_roomTypeTextFieldActionPerformed
+
+    private void durationStayTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_durationStayTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_durationStayTextFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -203,9 +238,23 @@ public class ConfirmationPaymentForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField priceTextField;
     private javax.swing.JTextField roomTypeTextField;
     // End of variables declaration//GEN-END:variables
+
+    void setDurationDays(int daysbetween) {
+        durationStayTextField.setText(Integer.toString(daysbetween));
+    }
+
+    void setNumOfGuests(Integer numOfGuests) {
+        guestTextField.setText(Integer.toString(numOfGuests));
+    }
+
+    void setPrice(int id) {
+        priceTextField.setText(Float.toString(RoomType.findById(id).getPrice()));
+        roomTypeTextField.setText(RoomType.findById(id).getName());
+    }
 
 }

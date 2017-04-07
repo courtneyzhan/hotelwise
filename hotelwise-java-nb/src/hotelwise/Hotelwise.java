@@ -5,8 +5,10 @@
  */
 package hotelwise;
 
+import hotelwise.model.RoomType;
 import java.sql.*;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
@@ -59,7 +61,7 @@ public class Hotelwise {
         //DEBUG
         System.out.println(username);
         System.out.println(password);
-
+        
         boolean userFound = false;
         // we get login request, now shall check database (username and password)
         String sql = "SELECT * FROM Customers WHERE email = ? AND password = ?;";
@@ -115,7 +117,11 @@ public class Hotelwise {
             return;
         }
 
-        long daysbetween = checkOutDate.getTime() - checkInDate.getTime();
+        int daysbetween = (int) (checkOutDate.getTime() - checkInDate.getTime());
+        int duration = (int) TimeUnit.DAYS.convert(daysbetween, TimeUnit.MILLISECONDS);
+        Hotelwise.confirmForm.setDurationDays(duration);
+        Hotelwise.confirmForm.setNumOfGuests(numOfGuests);
+
         System.out.println("Number of guests: " + numOfGuests + ", Arrival Date: " + checkInDate + ", Departure Date: " + checkOutDate + ",  Room Type ID: " + roomType + ", Days between: " + TimeUnit.DAYS.convert(daysbetween, TimeUnit.MILLISECONDS));
         boolean roomFound = false;
         // we get login request, now shall check database (username and password)
@@ -133,7 +139,8 @@ public class Hotelwise {
                 roomFound = true;
                 System.out.println("Room found: " + id);
                 roomsListForm.hidePanel(id);
-
+                confirmForm.setPrice(id);
+                
             }
             rs.close();
             pstmt.close();
@@ -153,7 +160,7 @@ public class Hotelwise {
             roomsListForm.setVisible(true);
             System.out.println("shown");
         } else {
-            
+            //search form displays error and asks user to redo form
             System.out.println("Display error on search form ...");
             searchForm.setVisible(true);
 

@@ -239,4 +239,5 @@ public class RoomSearchForm extends javax.swing.JFrame {
 
         this.doLayout(); // seems no effect
     }
+    
 }

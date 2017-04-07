@@ -211,6 +211,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Book Now"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="singleOVBookingButtonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
@@ -284,6 +287,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Book Now"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="doubleBookingButtonActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="doublePrice">
           <Properties>
@@ -381,6 +387,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Book Now"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="familyBookingButton3ActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

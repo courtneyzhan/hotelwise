@@ -119,6 +119,11 @@ public class AvailableRoomsListForm extends javax.swing.JFrame {
         );
 
         singleOVBookingButton.setText("Book Now");
+        singleOVBookingButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                singleOVBookingButtonActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("$30/night");
 
@@ -163,6 +168,11 @@ public class AvailableRoomsListForm extends javax.swing.JFrame {
         );
 
         doubleBookingButton.setText("Book Now");
+        doubleBookingButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                doubleBookingButtonActionPerformed(evt);
+            }
+        });
 
         doublePrice.setText("$40/night");
 
@@ -216,6 +226,11 @@ public class AvailableRoomsListForm extends javax.swing.JFrame {
         jLabel17.setText("Family");
 
         familyBookingButton3.setText("Book Now");
+        familyBookingButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                familyBookingButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout familyPanelLayout = new javax.swing.GroupLayout(familyPanel);
         familyPanel.setLayout(familyPanelLayout);
@@ -307,6 +322,8 @@ public class AvailableRoomsListForm extends javax.swing.JFrame {
     private void singleBookingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_singleBookingButtonActionPerformed
         // TODO add your handling code here:
         System.out.println("SINGLE PRESSED");
+        Hotelwise.confirmForm.setVisible(true);
+        Hotelwise.roomsListForm.setVisible(false);
     }//GEN-LAST:event_singleBookingButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -314,6 +331,27 @@ public class AvailableRoomsListForm extends javax.swing.JFrame {
         Hotelwise.searchForm.setVisible(true);
         Hotelwise.roomsListForm.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void singleOVBookingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_singleOVBookingButtonActionPerformed
+        // TODO add your handling code here:
+        System.out.println("SINGLE OV PRESSED");
+        Hotelwise.confirmForm.setVisible(true);
+        Hotelwise.roomsListForm.setVisible(false);
+    }//GEN-LAST:event_singleOVBookingButtonActionPerformed
+
+    private void doubleBookingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doubleBookingButtonActionPerformed
+        // TODO add your handling code here:
+        System.out.println("DOUBLE PRESSED");
+        Hotelwise.confirmForm.setVisible(true);
+        Hotelwise.roomsListForm.setVisible(false);
+    }//GEN-LAST:event_doubleBookingButtonActionPerformed
+
+    private void familyBookingButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_familyBookingButton3ActionPerformed
+        // TODO add your handling code here:
+        System.out.println("FAMILY PRESSED");
+        Hotelwise.confirmForm.setVisible(true);
+        Hotelwise.roomsListForm.setVisible(false);
+    }//GEN-LAST:event_familyBookingButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -349,7 +387,7 @@ public class AvailableRoomsListForm extends javax.swing.JFrame {
             }
         });
     }
-    
+
     public void hidePanel(int panelName) {
         if (panelName == 1) {
             singlePanel.setVisible(true);
@@ -361,7 +399,7 @@ public class AvailableRoomsListForm extends javax.swing.JFrame {
             familyPanel.setVisible(true);
         }
     }
-    
+
     public void hideAllPanel() {
         singlePanel.setVisible(false);
         singleOVPanel.setVisible(false);
