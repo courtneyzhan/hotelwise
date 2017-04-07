@@ -183,10 +183,10 @@ public class CustomerLogInForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPasswordField passwordField;
     // End of variables declaration//GEN-END:variables
-
+/*
     public void showLoginError() {
         // System.out.println("calling to be visible");
         incorrectTextField.setVisible(true);
         this.layout();
-    }
+    }*/
 }

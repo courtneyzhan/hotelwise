@@ -31,7 +31,7 @@ public class AvailableRoomsListForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel4 = new javax.swing.JLabel();
+        TitleLabel = new javax.swing.JLabel();
         singlePanel = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -46,21 +46,22 @@ public class AvailableRoomsListForm extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         doublePanel = new javax.swing.JPanel();
         doubleBookingButton = new javax.swing.JButton();
-        jLabel10 = new javax.swing.JLabel();
+        doublePrice = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         familyPanel = new javax.swing.JPanel();
-        familyBookingButton = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
+        familyBookingButton3 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel4.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel4.setText("Available Rooms List");
+        TitleLabel.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        TitleLabel.setText("Available Rooms List");
 
         jLabel2.setText("$25/night");
 
@@ -71,6 +72,11 @@ public class AvailableRoomsListForm extends javax.swing.JFrame {
         jLabel1.setText("Single");
 
         singleBookingButton.setText("Book Now");
+        singleBookingButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                singleBookingButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout singlePanelLayout = new javax.swing.GroupLayout(singlePanel);
         singlePanel.setLayout(singlePanelLayout);
@@ -136,7 +142,7 @@ public class AvailableRoomsListForm extends javax.swing.JFrame {
                             .addComponent(jLabel7)
                             .addComponent(jLabel6)))
                     .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addComponent(singleOVBookingButton)
                 .addContainerGap())
         );
@@ -158,7 +164,7 @@ public class AvailableRoomsListForm extends javax.swing.JFrame {
 
         doubleBookingButton.setText("Book Now");
 
-        jLabel10.setText("$40/night");
+        doublePrice.setText("$40/night");
 
         jLabel11.setText("TV");
 
@@ -178,7 +184,7 @@ public class AvailableRoomsListForm extends javax.swing.JFrame {
                         .addGroup(doublePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel12)
                             .addComponent(jLabel11)
-                            .addComponent(jLabel10)))
+                            .addComponent(doublePrice)))
                     .addComponent(jLabel13))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(doubleBookingButton)
@@ -192,7 +198,7 @@ public class AvailableRoomsListForm extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(doublePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(doublePanelLayout.createSequentialGroup()
-                        .addComponent(jLabel10)
+                        .addComponent(doublePrice)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel11))
                     .addComponent(doubleBookingButton))
@@ -200,8 +206,6 @@ public class AvailableRoomsListForm extends javax.swing.JFrame {
                 .addComponent(jLabel12)
                 .addContainerGap())
         );
-
-        familyBookingButton.setText("Book Now");
 
         jLabel14.setText("$50/night");
 
@@ -211,6 +215,8 @@ public class AvailableRoomsListForm extends javax.swing.JFrame {
 
         jLabel17.setText("Family");
 
+        familyBookingButton3.setText("Book Now");
+
         javax.swing.GroupLayout familyPanelLayout = new javax.swing.GroupLayout(familyPanel);
         familyPanel.setLayout(familyPanelLayout);
         familyPanelLayout.setHorizontalGroup(
@@ -218,40 +224,49 @@ public class AvailableRoomsListForm extends javax.swing.JFrame {
             .addGroup(familyPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(familyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel17)
                     .addGroup(familyPanelLayout.createSequentialGroup()
                         .addGap(16, 16, 16)
                         .addGroup(familyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel16)
-                            .addComponent(jLabel15)
-                            .addComponent(jLabel14)))
-                    .addComponent(jLabel17))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(familyBookingButton)
+                            .addComponent(jLabel14)
+                            .addGroup(familyPanelLayout.createSequentialGroup()
+                                .addGroup(familyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel16)
+                                    .addComponent(jLabel15))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(familyBookingButton3)))))
                 .addContainerGap())
         );
         familyPanelLayout.setVerticalGroup(
             familyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(familyPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel17)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(familyPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(familyBookingButton3)
                     .addGroup(familyPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel17)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel15))
-                    .addComponent(familyBookingButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel16)
-                .addContainerGap(12, Short.MAX_VALUE))
+                        .addComponent(jLabel15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel16)))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
+
+        jButton1.setText("Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(119, Short.MAX_VALUE)
+                .addContainerGap(91, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(singlePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(doublePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -259,27 +274,46 @@ public class AvailableRoomsListForm extends javax.swing.JFrame {
                     .addComponent(familyPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(39, 39, 39))
             .addGroup(layout.createSequentialGroup()
-                .addGap(104, 104, 104)
-                .addComponent(jLabel4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(104, 104, 104)
+                        .addComponent(TitleLabel))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(jButton1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(jLabel4)
+                .addComponent(TitleLabel)
                 .addGap(18, 18, 18)
                 .addComponent(singlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(singleOVPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(doublePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(familyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(familyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void singleBookingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_singleBookingButtonActionPerformed
+        // TODO add your handling code here:
+        System.out.println("SINGLE PRESSED");
+    }//GEN-LAST:event_singleBookingButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Hotelwise.searchForm.setVisible(true);
+        Hotelwise.roomsListForm.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -318,22 +352,32 @@ public class AvailableRoomsListForm extends javax.swing.JFrame {
     
     public void hidePanel(int panelName) {
         if (panelName == 1) {
-            System.out.println("Hdiing  Single ...");
             singlePanel.setVisible(true);
         } else if (panelName == 2) {
             singleOVPanel.setVisible(true);
         } else if (panelName == 3) {
             doublePanel.setVisible(true);
+        } else if (panelName == 4) {
+            familyPanel.setVisible(true);
         }
+    }
+    
+    public void hideAllPanel() {
+        singlePanel.setVisible(false);
+        singleOVPanel.setVisible(false);
+        doublePanel.setVisible(false);
+        familyPanel.setVisible(false);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel TitleLabel;
     private javax.swing.JButton doubleBookingButton;
     private javax.swing.JPanel doublePanel;
-    private javax.swing.JButton familyBookingButton;
+    private javax.swing.JLabel doublePrice;
+    private javax.swing.JButton familyBookingButton3;
     private javax.swing.JPanel familyPanel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -343,7 +387,6 @@ public class AvailableRoomsListForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;

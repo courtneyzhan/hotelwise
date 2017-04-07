@@ -22,14 +22,15 @@ public class Hotelwise {
     public static CustomerLogInForm loginForm;
     public static RoomSearchForm searchForm;
     public static AvailableRoomsListForm roomsListForm;
-
+    public static ConfirmationPaymentForm confirmForm;
+    
     public static Connection conn;
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
+        //Establishing connection to database and opening database.
         try {
             Class.forName("org.sqlite.JDBC");
             conn = DriverManager.getConnection("jdbc:sqlite:hotelwise_test.db");
@@ -40,7 +41,7 @@ public class Hotelwise {
         }
         System.out.println("Opened database successfully");
 
-        // TODO code application logic here
+        // Initializing the forms that will be used in the program. At the start only the Customer Log In Form is visible.
         loginForm = new CustomerLogInForm();
         loginForm.setVisible(true);
 
@@ -49,9 +50,13 @@ public class Hotelwise {
 
         roomsListForm = new AvailableRoomsListForm();
         roomsListForm.setVisible(false);
+        
+        confirmForm = new ConfirmationPaymentForm();
+        confirmForm.setVisible(false);
     }
-
+    //Login method; in the customer log in form, it checks the inputted email and password against registered customers in the db
     public static void login(String username, String password) {
+        //DEBUG
         System.out.println(username);
         System.out.println(password);
 
@@ -70,8 +75,8 @@ public class Hotelwise {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 userFound = true;
+                //DEBUG
                 System.out.println("Customer found with id: " + id);
-
             }
             rs.close();
             pstmt.close();
@@ -90,6 +95,8 @@ public class Hotelwise {
             loginForm.setVisible(false);
             searchForm.setVisible(true);
         } else {
+            //login unsuccessful, will ask user to try again.
+            //DEBUG
             System.out.println("Failed to login");
             loginForm.setVisible(true);
         }
@@ -97,11 +104,19 @@ public class Hotelwise {
 
     static void roomSearch(Integer numOfGuests, String arrivalDate, String departureDate, Integer roomType) throws Exception {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-        java.util.Date checkInDate = (java.util.Date) format.parse(arrivalDate);
-        java.util.Date checkOutDate = (java.util.Date) format.parse(departureDate);
+     
+        java.util.Date checkInDate, checkOutDate;
+        try {
+          checkInDate = (java.util.Date) format.parse(arrivalDate);
+          checkOutDate = (java.util.Date) format.parse(departureDate);
+        } catch (java.text.ParseException ex) {
+            // System.out.println("Calling search form.showIncorrectError");
+            searchForm.showIncorrectError("Invalid dates entered: '" + arrivalDate + "', '" + departureDate + "'");
+            return;
+        }
+
         long daysbetween = checkOutDate.getTime() - checkInDate.getTime();
         System.out.println("Number of guests: " + numOfGuests + ", Arrival Date: " + checkInDate + ", Departure Date: " + checkOutDate + ",  Room Type ID: " + roomType + ", Days between: " + TimeUnit.DAYS.convert(daysbetween, TimeUnit.MILLISECONDS));
-
         boolean roomFound = false;
         // we get login request, now shall check database (username and password)
         String sql = "SELECT * FROM Rooms WHERE room_type_id = ?;";
@@ -114,7 +129,7 @@ public class Hotelwise {
 
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()) {
-                int id = rs.getInt("id");
+                int id = rs.getInt("room_type_id");
                 roomFound = true;
                 System.out.println("Room found: " + id);
                 roomsListForm.hidePanel(id);
@@ -138,7 +153,7 @@ public class Hotelwise {
             roomsListForm.setVisible(true);
             System.out.println("shown");
         } else {
-
+            
             System.out.println("Display error on search form ...");
             searchForm.setVisible(true);
 
