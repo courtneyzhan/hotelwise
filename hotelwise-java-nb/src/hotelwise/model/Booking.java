@@ -10,7 +10,7 @@ import java.util.Date;
  *
  * @author dominic
  */
-public class Booking {
+public class Booking implements java.io.Serializable  {
 
     private int roomId;
     private int roomTypeId;

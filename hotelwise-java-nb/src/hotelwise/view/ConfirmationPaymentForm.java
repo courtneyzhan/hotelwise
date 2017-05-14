@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package hotelwise;
+package hotelwise.view;
 
 import hotelwise.model.RoomType;
 
@@ -244,15 +244,15 @@ public class ConfirmationPaymentForm extends javax.swing.JFrame {
     private javax.swing.JTextField roomTypeTextField;
     // End of variables declaration//GEN-END:variables
 
-    void setDurationDays(int daysbetween) {
+    public void setDurationDays(int daysbetween) {
         durationStayTextField.setText(Integer.toString(daysbetween));
     }
 
-    void setNumOfGuests(Integer numOfGuests) {
+    public void setNumOfGuests(Integer numOfGuests) {
         guestTextField.setText(Integer.toString(numOfGuests));
     }
 
-    void setPrice(int id) {
+    public void setPrice(int id) {
         priceTextField.setText(Float.toString(RoomType.findById(id).getPrice()));
         roomTypeTextField.setText(RoomType.findById(id).getName());
     }

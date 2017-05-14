@@ -5,7 +5,13 @@
  */
 package hotelwise;
 
+import hotelwise.model.AppData;
+import hotelwise.view.RoomSearchForm;
+import hotelwise.view.AvailableRoomsListForm;
+import hotelwise.view.CustomerLogInForm;
+import hotelwise.view.ConfirmationPaymentForm;
 import hotelwise.model.RoomType;
+import hotelwise.model.User;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -25,7 +31,8 @@ public class Hotelwise {
     public static RoomSearchForm searchForm;
     public static AvailableRoomsListForm roomsListForm;
     public static ConfirmationPaymentForm confirmForm;
-    
+
+    public static AppData appData;
     public static Connection conn;
 
     /**
@@ -55,9 +62,45 @@ public class Hotelwise {
         
         confirmForm = new ConfirmationPaymentForm();
         confirmForm.setVisible(false);
+        
+        appData = AppData.loadData();
+        if (appData == null) {
+            System.out.println("No AppData is loaded, starting a new ");
+            appData = new AppData();
+            appData.seed();
+            AppData.saveData(appData);
+        }
     }
+    
     //Login method; in the customer log in form, it checks the inputted email and password against registered customers in the db
     public static void login(String username, String password) {
+        //DEBUG
+        System.out.println(username);
+        System.out.println(password);
+        
+        boolean userFound = false;
+        for(User user: appData.getUserList()) {
+            if (user.getLogin().equals(username) && user.getPassword().equals(password)) {
+                userFound = true;
+                break;
+            }
+        }
+                
+        if (userFound) {
+            // authenticated, go to next form
+            loginForm.setVisible(false);
+            searchForm.setVisible(true);
+        } else {
+            //login unsuccessful, will ask user to try again.
+            //DEBUG
+            System.out.println("Failed to login");
+            loginForm.setVisible(true);
+        }
+    }
+
+    // The database way using JDBC - no required for this assignment
+    // Login method; in the customer log in form, it checks the inputted email and password against registered customers in the db
+    public static void loginByDatabase(String username, String password) {
         //DEBUG
         System.out.println(username);
         System.out.println(password);
@@ -104,7 +147,7 @@ public class Hotelwise {
         }
     }
 
-    static void roomSearch(Integer numOfGuests, String arrivalDate, String departureDate, Integer roomType) throws Exception {
+    public static void roomSearch(Integer numOfGuests, String arrivalDate, String departureDate, Integer roomType) throws Exception {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
      
         java.util.Date checkInDate, checkOutDate;

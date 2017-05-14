@@ -9,10 +9,19 @@ package hotelwise.model;
  *
  * @author dominic
  */
-public class User {
+public class User implements java.io.Serializable  {
+    private int id;
     private String login;
     private String password;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     /**
      * @return the login
      */

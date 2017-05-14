@@ -9,7 +9,7 @@ package hotelwise.model;
  *
  * @author dominic
  */
-public class Rooms {
+public class Room implements java.io.Serializable  {
     private String roomNumber;
     private String floor;
     private int roomTypeId;

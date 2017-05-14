@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author dominic
  */
-public class Payment {
+public class Payment implements java.io.Serializable  {
 
     private int customerId;
     private int bookingId;

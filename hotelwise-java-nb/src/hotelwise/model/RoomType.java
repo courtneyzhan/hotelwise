@@ -17,7 +17,7 @@ import java.util.List;
  *
  * @author dominic
  */
-public class RoomType {
+public class RoomType implements java.io.Serializable  {
     private int id;
     private String name;
     private float price;
