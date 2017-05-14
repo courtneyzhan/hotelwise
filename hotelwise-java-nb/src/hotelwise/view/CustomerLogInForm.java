@@ -38,6 +38,7 @@ public class CustomerLogInForm extends javax.swing.JFrame {
         SignInButton = new javax.swing.JButton();
         passwordField = new javax.swing.JPasswordField();
         incorrectTextField = new javax.swing.JTextField();
+        registerCustomerButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,16 +76,22 @@ public class CustomerLogInForm extends javax.swing.JFrame {
             }
         });
 
+        registerCustomerButton.setText("Register");
+        registerCustomerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registerCustomerButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(SignInButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(25, 25, 25)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(incorrectTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
@@ -94,10 +101,15 @@ public class CustomerLogInForm extends javax.swing.JFrame {
                                     .addGap(48, 48, 48)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(emailTextField)
-                                        .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                        .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(145, 145, 145)
+                            .addComponent(jLabel1)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(145, 145, 145)
-                        .addComponent(jLabel1)))
+                        .addGap(17, 17, 17)
+                        .addComponent(registerCustomerButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(SignInButton)))
                 .addGap(0, 26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -116,7 +128,9 @@ public class CustomerLogInForm extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(SignInButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SignInButton)
+                    .addComponent(registerCustomerButton))
                 .addGap(19, 19, 19))
         );
 
@@ -139,6 +153,12 @@ public class CustomerLogInForm extends javax.swing.JFrame {
     private void incorrectTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incorrectTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_incorrectTextFieldActionPerformed
+
+    private void registerCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerCustomerButtonActionPerformed
+        // TODO add your handling code here:
+        //Hotelwise.loginForm.setVisible(false);
+        //Hotelwise.cusRegisterForm.setVisible(true);
+    }//GEN-LAST:event_registerCustomerButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -183,6 +203,7 @@ public class CustomerLogInForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPasswordField passwordField;
+    private javax.swing.JButton registerCustomerButton;
     // End of variables declaration//GEN-END:variables
 /*
     public void showLoginError() {

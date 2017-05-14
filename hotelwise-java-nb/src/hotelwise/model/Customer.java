@@ -11,7 +11,16 @@ import java.util.Date;
  *
  * @author courtney
  */
-public class Customer implements java.io.Serializable  {
+public class Customer implements java.io.Serializable {
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     private String firstName;
     private String lastName;
     private Date dob;

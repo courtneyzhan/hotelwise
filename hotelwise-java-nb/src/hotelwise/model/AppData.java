@@ -5,13 +5,19 @@
  */
 package hotelwise.model;
 
+import static hotelwise.Hotelwise.appData;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -21,22 +27,59 @@ public class AppData implements java.io.Serializable {
     
     private List<User> userList; 
     private List<RoomType> roomTypeList;
-    
+    private List<Room> roomList;
+    private List<Customer> customerList;
     public static final String DATA_FILE = "/tmp/appdata.ser";
-    
+
     
     public void seed() {
         userList = new ArrayList<User>();
         roomTypeList = new ArrayList<RoomType>();
-        
-        // seed data here
+        roomList = new ArrayList<Room>();
+        customerList = new ArrayList<Customer>();
+                    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+
+        // seed Users here
         User newUser = new User();
         newUser.setId(1);
         newUser.setLogin("staff");
         newUser.setPassword("testwise");
         userList.add(newUser);   
         
-        // ... 
+        //seed RoomType
+        RoomType singleRoom = new RoomType();
+        singleRoom.setId(1);
+        singleRoom.setName("Single");
+        singleRoom.setPrice((float) 25.0);
+        singleRoom.setFacility("Wifi");
+        singleRoom.setDescription("description");
+        roomTypeList.add(singleRoom);
+        
+        //seed Room
+        Room newRoom = new Room();
+        newRoom.setRoomType("Single");
+        newRoom.setRoomNumber("100");
+        newRoom.setFloor("1");
+        roomList.add(newRoom);
+        
+        //seed Customer
+        Customer newCustomer = new Customer();
+        newCustomer.setId(1);
+        newCustomer.setFirstName("John");
+        newCustomer.setLastName("Su");
+        try {
+            newCustomer.setDob((java.util.Date) format.parse("2017-01-01"));
+        } catch (ParseException ex) {
+            Logger.getLogger(AppData.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        newCustomer.setAddress1("asdf");
+        newCustomer.setAddress2("asdf");
+        newCustomer.setEmail("jsu@email.com");
+        newCustomer.setPassword("asdf");
+        newCustomer.setCreditCardNumber("12345678");
+        newCustomer.setCreditCardMonth(01);
+        newCustomer.setCreditCardYear(01);
+        customerList.add(newCustomer);
     }
   
     
@@ -73,6 +116,54 @@ public class AppData implements java.io.Serializable {
       }
       return appData;
     }
+    
+    
+    public RoomType findRoomTypeByName(String name) {
+        for(RoomType roomType: appData.getRoomTypeList()) {
+            if (roomType.getName().equals(name)) {
+                return roomType;
+            }
+        }
+        return null;
+    }
+    
+    public Room findRoomByRoomNumber(String roomNumber) {
+        for (Room room: appData.getRoomList()) {
+            if (room.getRoomNumber().equals(roomNumber)) {
+                return room;
+            }
+        }
+        return null;
+    }
+    
+    public Customer findCustomerByEmail(String email) {
+        for (Customer customer: appData.getCustomerList()) {
+            if (customer.getEmail().equals(email)) {
+                return customer;
+            }
+        }
+        return null;
+    }
+
+    public List<Customer> getCustomerList() {
+        return customerList;
+    }
+
+    public void setCustomerList(List<Customer> customerList) {
+        this.customerList = customerList;
+    }
+
+    
+    
+    public List<Room> getRoomList() {
+        return roomList;
+    }
+
+    public void setRoomList(List<Room> roomList) {
+        this.roomList = roomList;
+    }
+    
+
     
     public List<User> getUserList() {
         return userList;

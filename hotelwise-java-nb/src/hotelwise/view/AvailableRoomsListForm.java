@@ -390,14 +390,14 @@ public class AvailableRoomsListForm extends javax.swing.JFrame {
         });
     }
 
-    public void hidePanel(int panelName) {
-        if (panelName == 1) {
+    public void hidePanel(String panelName) {
+        if (panelName.equals("Single")) {
             singlePanel.setVisible(true);
-        } else if (panelName == 2) {
+        } else if (panelName.equals("Single with Ocean View")) {
             singleOVPanel.setVisible(true);
-        } else if (panelName == 3) {
+        } else if (panelName.equals("Double")) {
             doublePanel.setVisible(true);
-        } else if (panelName == 4) {
+        } else if (panelName.equals("Family")) {
             familyPanel.setVisible(true);
         }
     }

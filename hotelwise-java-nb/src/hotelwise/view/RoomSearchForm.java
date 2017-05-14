@@ -14,7 +14,8 @@ import java.util.logging.Logger;
  * @author courtney
  */
 public class RoomSearchForm extends javax.swing.JFrame {
-
+    
+   
     /**
      * Creates new form RoomSearchForm
      */
@@ -165,7 +166,7 @@ public class RoomSearchForm extends javax.swing.JFrame {
         unavailableTextField.setVisible(true);
         incorrectTextField1.setVisible(true);
         try {
-            Hotelwise.roomSearch(Integer.parseInt(numOfGuestsSpinner.getValue().toString()), arrivalTextField.getText(), departureTextField.getText(), roomTypeComboBox.getSelectedIndex());
+            Hotelwise.roomSearch(Integer.parseInt(numOfGuestsSpinner.getValue().toString()), arrivalTextField.getText(), departureTextField.getText(), (String) roomTypeComboBox.getSelectedItem());
         } catch (Exception ex) {
             Logger.getLogger(RoomSearchForm.class.getName()).log(Level.SEVERE, null, ex);
         }

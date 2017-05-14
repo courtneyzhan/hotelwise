@@ -6,18 +6,23 @@
 
 package hotelwise.view;
 
+import hotelwise.model.AppData;
 import hotelwise.model.RoomType;
-
+ 
 /**
  *
  * @author dominic
  */
 public class ConfirmationPaymentForm extends javax.swing.JFrame {
 
+    private AppData appData;
+    
     /** Creates new form ConfirmationPaymentForm */
-    public ConfirmationPaymentForm() {
+    public ConfirmationPaymentForm(AppData appData) {
         initComponents();
-        roomTypeTextField.setText(RoomType.findById(1).getName());
+        this.appData = appData;
+        
+        roomTypeTextField.setText(appData.getRoomTypeList().get(0).getName());
         //priceTextField.setText(Float.toString(RoomType.findById(1).getPrice()));
     }
 
@@ -190,40 +195,6 @@ public class ConfirmationPaymentForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_durationStayTextFieldActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ConfirmationPaymentForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ConfirmationPaymentForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ConfirmationPaymentForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ConfirmationPaymentForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ConfirmationPaymentForm().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField creditExpiryTextField;
@@ -252,9 +223,14 @@ public class ConfirmationPaymentForm extends javax.swing.JFrame {
         guestTextField.setText(Integer.toString(numOfGuests));
     }
 
-    public void setPrice(int id) {
-        priceTextField.setText(Float.toString(RoomType.findById(id).getPrice()));
-        roomTypeTextField.setText(RoomType.findById(id).getName());
+    public void setPrice(String roomType, int daysbetween) {
+        Float unitPrice = appData.findRoomTypeByName(roomType).getPrice();
+        System.out.println("unitPrice = " + unitPrice);
+        System.out.println("daysbetween = " + daysbetween);
+        Float total = unitPrice * daysbetween;
+        System.out.println("total = " + total);
+        priceTextField.setText(String.valueOf(total));
+        //roomTypeTextField.setText(appData.getRoomTypeList().get(id).getName());
     }
 
 }

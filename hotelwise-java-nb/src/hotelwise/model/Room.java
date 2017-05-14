@@ -10,9 +10,9 @@ package hotelwise.model;
  * @author dominic
  */
 public class Room implements java.io.Serializable  {
+    private String roomType;
     private String roomNumber;
     private String floor;
-    private int roomTypeId;
 
     /**
      * @return the roomNumber
@@ -42,17 +42,13 @@ public class Room implements java.io.Serializable  {
         this.floor = floor;
     }
 
-    /**
-     * @return the roomTypeId
-     */
-    public int getRoomTypeId() {
-        return roomTypeId;
+    public String getRoomType() {
+        return roomType;
     }
 
-    /**
-     * @param roomTypeId the roomTypeId to set
-     */
-    public void setRoomTypeId(int roomTypeId) {
-        this.roomTypeId = roomTypeId;
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
     }
+    
+    
 }
