@@ -26,7 +26,7 @@ public class Hotelwise {
     public static RoomSearchForm searchForm;
     public static AvailableRoomsListForm roomsListForm;
     public static ConfirmationPaymentForm confirmForm;
-    //public static CustomerRegisterForm cusRegisterForm;
+    public static CustomerRegisterForm cusRegisterForm;
 
     public static AppData appData;
     public static Connection conn;
@@ -67,8 +67,8 @@ public class Hotelwise {
         confirmForm = new ConfirmationPaymentForm(appData);
         confirmForm.setVisible(false);
 
-        //cusRegisterForm = new CustomerRegisterForm();
-        //cusRegisterForm.setVisible(false);
+        cusRegisterForm = new CustomerRegisterForm(appData);
+        cusRegisterForm.setVisible(false);
     }
 
     //Login method; in the customer log in form, it checks the inputted email and password against registered customers in the db
@@ -76,7 +76,7 @@ public class Hotelwise {
         //DEBUG
         System.out.println(username);
         System.out.println(password);
-        //System.out.println(appData.findRoomByRoomNumber("100").getFloor());
+        System.out.println(appData.findCustomerByEmail("a@b.com"));
         boolean userFound = false;
         for (User user : appData.getUserList()) {
             if (user.getLogin().equals(username) && user.getPassword().equals(password)) {

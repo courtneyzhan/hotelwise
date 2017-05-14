@@ -4,9 +4,10 @@
  * and open the template in the editor.
  */
 
-package hotelwise;
+package hotelwise.view;
 
-import hotelwise.model.Customer;
+import hotelwise.Hotelwise;
+import hotelwise.model.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
@@ -17,10 +18,13 @@ import java.util.logging.Logger;
  * @author dominic
  */
 public class CustomerRegisterForm extends javax.swing.JFrame {
+    private AppData appData;
 
     /** Creates new form CustomerRegisterForm */
-    public CustomerRegisterForm() {
+    public CustomerRegisterForm(AppData appData) {
         initComponents();
+        this.appData = appData;
+
         pwMatchErrorLabel.setVisible(false);
     }
 
@@ -230,8 +234,8 @@ public class CustomerRegisterForm extends javax.swing.JFrame {
                 SimpleDateFormat parser=new SimpleDateFormat("yyyy-MM-dd");
                 java.util.Date date = parser.parse(dobTextField.getText());
                 
-                Customer.registerNew(firstNameTextField.getText(), lastNameTextField.getText(), date, address1TextField.getText(), address2TextField.getText(), emailTextField.getText(), passwordTextField.getText(), "0", 0, 0);
-                Hotelwise.registerForm.setVisible(false);
+                appData.registerNewCustomer(firstNameTextField.getText(), lastNameTextField.getText(), date, address1TextField.getText(), address2TextField.getText(), emailTextField.getText(), passwordTextField.getText(), "0", 0, 0);
+                Hotelwise.cusRegisterForm.setVisible(false);
                 Hotelwise.loginForm.setVisible(true);
             } catch (ParseException ex) {
                 Logger.getLogger(CustomerRegisterForm.class.getName()).log(Level.SEVERE, null, ex);
@@ -248,37 +252,7 @@ public class CustomerRegisterForm extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CustomerRegisterForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CustomerRegisterForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CustomerRegisterForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CustomerRegisterForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CustomerRegisterForm().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField address1TextField;

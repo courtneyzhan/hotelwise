@@ -156,8 +156,8 @@ public class CustomerLogInForm extends javax.swing.JFrame {
 
     private void registerCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerCustomerButtonActionPerformed
         // TODO add your handling code here:
-        //Hotelwise.loginForm.setVisible(false);
-        //Hotelwise.cusRegisterForm.setVisible(true);
+        Hotelwise.loginForm.setVisible(false);
+        Hotelwise.cusRegisterForm.setVisible(true);
     }//GEN-LAST:event_registerCustomerButtonActionPerformed
 
     /**
