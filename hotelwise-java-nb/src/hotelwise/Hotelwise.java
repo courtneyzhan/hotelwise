@@ -35,6 +35,8 @@ public class Hotelwise {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+        System.out.println("args = " + OsUtils.getOsName());
         //Establishing connection to database and opening database.
         try {
             Class.forName("org.sqlite.JDBC");

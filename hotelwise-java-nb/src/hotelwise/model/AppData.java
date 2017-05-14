@@ -6,6 +6,7 @@
 package hotelwise.model;
 
 import static hotelwise.Hotelwise.appData;
+import hotelwise.OsUtils;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -31,7 +32,7 @@ public class AppData implements java.io.Serializable {
     private List<RoomType> roomTypeList;
     private List<Room> roomList;
     private List<Customer> customerList;
-    public static final String DATA_FILE = "/tmp/appdata.ser";
+    public static final String DATA_FILE = OsUtils.isWindows() ? "C:/temp/appdata.ser " : "/tmp/appdata.ser";
 
     public void seed() {
         userList = new ArrayList<User>();
@@ -91,7 +92,7 @@ public class AppData implements java.io.Serializable {
             out.writeObject(appData);
             out.close();
             fileOut.close();
-            System.out.printf("Serialized data is saved in /tmp/employee.ser");
+            System.out.printf("Serialized data is saved in " + DATA_FILE);
         } catch (IOException i) {
             i.printStackTrace();
         }
