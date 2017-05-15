@@ -14,12 +14,10 @@ import java.util.logging.Logger;
  * @author courtney
  */
 public class RoomSearchForm extends javax.swing.JFrame {
-    
-   
+
     /**
      * Creates new form RoomSearchForm
      */
-
     public RoomSearchForm() {
         initComponents();
         unavailableTextField.setVisible(false);
@@ -72,6 +70,8 @@ public class RoomSearchForm extends javax.swing.JFrame {
         jLabel9.setText("Room Type:");
 
         roomTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Single", "Single with Ocean View", "Double", "Family" }));
+
+        numOfGuestsSpinner.setModel(new javax.swing.SpinnerNumberModel(1, 1, 4, 1));
 
         unavailableTextField.setEditable(false);
         unavailableTextField.setText("Sorry there are no rooms of that type available.");
@@ -162,13 +162,20 @@ public class RoomSearchForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
-        Hotelwise.roomsListForm.hideAllPanel();
-        unavailableTextField.setVisible(true);
-        incorrectTextField1.setVisible(true);
-        try {
-            Hotelwise.roomSearch(Integer.parseInt(numOfGuestsSpinner.getValue().toString()), arrivalTextField.getText(), departureTextField.getText(), (String) roomTypeComboBox.getSelectedItem());
-        } catch (Exception ex) {
-            Logger.getLogger(RoomSearchForm.class.getName()).log(Level.SEVERE, null, ex);
+        if (arrivalTextField.getText().equals(departureTextField.getText())) {
+            showIncorrectError("The arrival date and the departure date must be different.");
+        } else {
+            Hotelwise.roomsListForm.hideAllPanel();
+            unavailableTextField.setVisible(true);
+            incorrectTextField1.setVisible(true);
+            if (arrivalTextField.getText().equals(departureTextField.getText())) {
+                showIncorrectError("The arrival date and the departure date must be different.");
+            }
+            try {
+                Hotelwise.roomSearch(Integer.parseInt(numOfGuestsSpinner.getValue().toString()), arrivalTextField.getText(), departureTextField.getText(), (String) roomTypeComboBox.getSelectedItem());
+            } catch (Exception ex) {
+                Logger.getLogger(RoomSearchForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_searchButtonActionPerformed
 
@@ -235,11 +242,12 @@ public class RoomSearchForm extends javax.swing.JFrame {
         unavailableTextField.setVisible(true);
         this.layout();
     }
+
     public void showIncorrectError(String errorText) {
         incorrectTextField1.setVisible(true);
         incorrectTextField1.setText(errorText);
 
         this.doLayout(); // seems no effect
     }
-    
+
 }

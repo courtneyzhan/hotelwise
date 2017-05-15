@@ -28,6 +28,8 @@ import java.util.logging.Logger;
 public class AppData implements java.io.Serializable {
 
 
+
+
     private List<User> userList;
     private List<RoomType> roomTypeList;
     private List<Room> roomList;
@@ -142,6 +144,10 @@ public class AppData implements java.io.Serializable {
             }
         }
         return null;
+    }
+    
+        public static void createBooking() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

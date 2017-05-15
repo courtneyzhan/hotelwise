@@ -51,6 +51,7 @@ public class ConfirmationPaymentForm extends javax.swing.JFrame {
         creditExpiryTextField = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        payButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,6 +95,13 @@ public class ConfirmationPaymentForm extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel7.setText("$");
 
+        payButton.setText("Pay");
+        payButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                payButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -133,7 +141,6 @@ public class ConfirmationPaymentForm extends javax.swing.JFrame {
                                         .addGap(103, 103, 103)
                                         .addComponent(creditNumberTextField))))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(priceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -141,7 +148,11 @@ public class ConfirmationPaymentForm extends javax.swing.JFrame {
                         .addGap(34, 34, 34)
                         .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(creditExpiryTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(creditExpiryTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(payButton)
+                        .addGap(13, 13, 13)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -168,7 +179,6 @@ public class ConfirmationPaymentForm extends javax.swing.JFrame {
                         .addComponent(priceTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel5)
                         .addComponent(jLabel7)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(creditNumberTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -180,7 +190,9 @@ public class ConfirmationPaymentForm extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
                     .addComponent(creditExpiryTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(payButton)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -194,6 +206,10 @@ public class ConfirmationPaymentForm extends javax.swing.JFrame {
     private void durationStayTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_durationStayTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_durationStayTextFieldActionPerformed
+
+    private void payButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payButtonActionPerformed
+        AppData.createBooking();
+    }//GEN-LAST:event_payButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -211,6 +227,7 @@ public class ConfirmationPaymentForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JButton payButton;
     private javax.swing.JTextField priceTextField;
     private javax.swing.JTextField roomTypeTextField;
     // End of variables declaration//GEN-END:variables
@@ -225,10 +242,7 @@ public class ConfirmationPaymentForm extends javax.swing.JFrame {
 
     public void setPrice(String roomType, int daysbetween) {
         Float unitPrice = appData.findRoomTypeByName(roomType).getPrice();
-        System.out.println("unitPrice = " + unitPrice);
-        System.out.println("daysbetween = " + daysbetween);
         Float total = unitPrice * daysbetween;
-        System.out.println("total = " + total);
         priceTextField.setText(String.valueOf(total));
         //roomTypeTextField.setText(appData.getRoomTypeList().get(id).getName());
     }

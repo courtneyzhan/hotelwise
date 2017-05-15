@@ -12,15 +12,8 @@ import java.util.Date;
  * @author courtney
  */
 public class Customer implements java.io.Serializable {
+
     private int id;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
     private String firstName;
     private String lastName;
     private Date dob;
@@ -31,6 +24,15 @@ public class Customer implements java.io.Serializable {
     private String creditCardNumber;
     private int creditCardMonth;
     private int creditCardYear;
+    private boolean active = true;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -110,5 +112,13 @@ public class Customer implements java.io.Serializable {
 
     public void setCreditCardYear(int creditCardYear) {
         this.creditCardYear = creditCardYear;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

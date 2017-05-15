@@ -9,8 +9,10 @@ import hotelwise.view.*;
 import hotelwise.model.*;
 import java.sql.*;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
 import javax.swing.JFrame;
@@ -35,8 +37,9 @@ public class Hotelwise {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+
         System.out.println("args = " + OsUtils.getOsName());
+
         //Establishing connection to database and opening database.
         try {
             Class.forName("org.sqlite.JDBC");
@@ -159,6 +162,28 @@ public class Hotelwise {
             // System.out.println("Calling search form.showIncorrectError");
             searchForm.showIncorrectError("Invalid dates entered: '" + arrivalDate + "', '" + departureDate + "'");
             return;
+        }
+
+        Calendar currentDateCal = Calendar.getInstance(); //Get the current date
+        TimeZone timeZone = TimeZone.getTimeZone("Australia/Brisbane");
+        currentDateCal.setTimeZone(timeZone);
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy"); //format it as per your requirement
+        String dateNow = formatter.format(currentDateCal.getTime());
+        System.out.println("Now the date is :=>  " + currentDateCal.getTime());
+        java.util.Date today = currentDateCal.getTime();
+
+        Long time = today.getTime();
+        Date todayMidnight = new Date(time - time % (24 * 60 * 60 * 1000));
+
+        if (checkOutDate.before(new java.util.Date(checkInDate.getTime() + time % (24 * 60 * 60 * 1000)))) {
+            searchForm.showIncorrectError("Check out will after Check in date");
+            System.out.println("Wrong ionput");
+        }
+
+        if (checkInDate.before(todayMidnight)) {
+            // TODO   having trouble update the error message on form and display
+            searchForm.showIncorrectError("Arrival dates should be after today's date");
+            System.out.println("TOO EARLY");
         }
 
         int daysbetween = (int) (checkOutDate.getTime() - checkInDate.getTime());
