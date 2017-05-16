@@ -5,10 +5,7 @@
  */
 package hotelwise;
 
-/**
- *
- * @author zhimin
- */
+
 public final class OsUtils {
 
     private static String OS = null;

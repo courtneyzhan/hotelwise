@@ -81,17 +81,26 @@ public class Hotelwise {
         //DEBUG
         System.out.println(username);
         System.out.println(password);
-        System.out.println(appData.findCustomerByEmail("a@b.com"));
+        //System.out.println(appData.findCustomerByEmail("a@b.com"));
         boolean userFound = false;
-        for (User user : appData.getUserList()) {
-            if (user.getLogin().equals(username) && user.getPassword().equals(password)) {
+        Customer loggedInCustomer = new Customer();
+        for (Customer customer : appData.getCustomerList()) {
+            if (customer.getEmail().equals(username) && customer.getPassword().equals(password)) {
                 userFound = true;
+                loggedInCustomer = customer;
                 break;
             }
         }
 
         if (userFound) {
             // authenticated, go to next form
+            searchForm.setCustomer(loggedInCustomer);
+            roomsListForm.setCustomer(loggedInCustomer);
+            confirmForm.setCustomer(loggedInCustomer);
+            searchForm.refreshUI();
+            roomsListForm.refreshUI();
+            confirmForm.refreshUI();
+
             loginForm.setVisible(false);
             searchForm.setVisible(true);
         } else {
@@ -100,6 +109,7 @@ public class Hotelwise {
             System.out.println("Failed to login");
             loginForm.setVisible(true);
         }
+
     }
 
     // The database way using JDBC - not required for this assignment
@@ -188,16 +198,29 @@ public class Hotelwise {
 
         int daysbetween = (int) (checkOutDate.getTime() - checkInDate.getTime());
         int duration = (int) TimeUnit.DAYS.convert(daysbetween, TimeUnit.MILLISECONDS);
+        //TODO PASSES IN ZERO
         Hotelwise.confirmForm.setDurationDays(duration);
-        Hotelwise.confirmForm.setNumOfGuests(numOfGuests);
-
+        confirmForm.setNumOfGuests(numOfGuests);
+        System.out.println("numOfGuests = " + numOfGuests);
         System.out.println("Number of guests: " + numOfGuests + ", Arrival Date: " + checkInDate + ", Departure Date: " + checkOutDate + ",  Room Type ID: " + roomType + ", Days between: " + TimeUnit.DAYS.convert(daysbetween, TimeUnit.MILLISECONDS));
         boolean roomFound = false;
+        Room chosenRoom;
+        Float unitPrice = appData.findRoomTypeByName(roomType).getPrice();
+        Float total = unitPrice * duration;
+                
         for (Room room : appData.getRoomList()) {
-            if (room.getRoomType().equals(roomType)) {
+            if (room.getRoomType().equals(roomType) && (room.getBookStatus() != "Active" || room.getBookStatus() != "Confirmed")) {
                 roomFound = true;
-                roomsListForm.hidePanel(roomType);
-                confirmForm.setPrice(roomType, duration);
+                chosenRoom = room;
+                roomsListForm.showPanel(roomType);
+
+                confirmForm.setPrice(total);
+                confirmForm.setRoomType(appData.findRoomTypeByName(roomType));
+                confirmForm.setCheckInDate(checkInDate);
+                confirmForm.setCheckOutDate(checkOutDate);
+                confirmForm.setTotalPrice(total);
+                break;
+
             }
         }
 
@@ -230,7 +253,7 @@ public class Hotelwise {
         int daysbetween = (int) (checkOutDate.getTime() - checkInDate.getTime());
         int duration = (int) TimeUnit.DAYS.convert(daysbetween, TimeUnit.MILLISECONDS);
         Hotelwise.confirmForm.setDurationDays(duration);
-        Hotelwise.confirmForm.setNumOfGuests(numOfGuests);
+        //Hotelwise.confirmForm.setNumOfGuests(numOfGuests);
 
         System.out.println("Number of guests: " + numOfGuests + ", Arrival Date: " + checkInDate + ", Departure Date: " + checkOutDate + ",  Room Type ID: " + roomType + ", Days between: " + TimeUnit.DAYS.convert(daysbetween, TimeUnit.MILLISECONDS));
         boolean roomFound = false;
@@ -248,7 +271,7 @@ public class Hotelwise {
                 int id = rs.getInt("room_type_id");
                 roomFound = true;
                 System.out.println("Room found: " + id);
-                //roomsListForm.hidePanel(id);
+                //roomsListForm.showPanel(id);
                 //confirmForm.setPrice(id);
 
             }

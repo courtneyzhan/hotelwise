@@ -4,50 +4,35 @@
  * and open the template in the editor.
  */
 package hotelwise.model;
+
 import java.util.Date;
 
 /**
  *
  * @author dominic
  */
-public class Booking implements java.io.Serializable  {
+public class Booking implements java.io.Serializable {
 
-    private int roomId;
-    private int roomTypeId;
+    //TODO change num of adults to numOfGuests and delete num of children
+    private String roomType;
     private int customerId;
     private Date checkInDate;
     private Date checkOutDate;
     private float totalPrice;
-    private int numOfAdults;
-    private int numOfChildren;
-    private String paidStatus;
+    private int numOfGuests;
 
     /**
-     * @return the roomId
+     * @return the roomType
      */
-    public int getRoomId() {
-        return roomId;
+    public String getRoomType() {
+        return roomType;
     }
 
     /**
-     * @param roomId the roomId to set
+     * @param roomType the roomType to set
      */
-    public void setRoomId(int roomId) {
-        this.roomId = roomId;
-    }
-
-    /**
-     * @return the roomTypeId
-     */
-    public int getRoomTypeId() {
-        return roomTypeId;
-    }
-
-    /**
-     * @param roomTypeId the roomTypeId to set
-     */
-    public void setRoomTypeId(int roomTypeId) {
-        this.roomTypeId = roomTypeId;
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
     }
 
     /**
@@ -109,43 +94,15 @@ public class Booking implements java.io.Serializable  {
     /**
      * @return the numOfAdults
      */
-    public int getNumOfAdults() {
-        return numOfAdults;
+    public int getNumOfGuests() {
+        return numOfGuests;
     }
 
     /**
      * @param numOfAdults the numOfAdults to set
      */
-    public void setNumOfAdults(int numOfAdults) {
-        this.numOfAdults = numOfAdults;
-    }
-
-    /**
-     * @return the numOfChildren
-     */
-    public int getNumOfChildren() {
-        return numOfChildren;
-    }
-
-    /**
-     * @param numOfChildren the numOfChildren to set
-     */
-    public void setNumOfChildren(int numOfChildren) {
-        this.numOfChildren = numOfChildren;
-    }
-
-    /**
-     * @return the paidStatus
-     */
-    public String getPaidStatus() {
-        return paidStatus;
-    }
-
-    /**
-     * @param paidStatus the paidStatus to set
-     */
-    public void setPaidStatus(String paidStatus) {
-        this.paidStatus = paidStatus;
+    public void setNumOfGuests(int numOfGuests) {
+        this.numOfGuests = numOfGuests;
     }
 
 }

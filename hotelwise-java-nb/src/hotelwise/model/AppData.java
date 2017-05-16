@@ -21,19 +21,15 @@ import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author zhimin
- */
+
 public class AppData implements java.io.Serializable {
-
-
-
 
     private List<User> userList;
     private List<RoomType> roomTypeList;
     private List<Room> roomList;
     private List<Customer> customerList;
+    private List<Booking> bookingList;
+
     public static final String DATA_FILE = OsUtils.isWindows() ? "C:/temp/appdata.ser " : "/tmp/appdata.ser";
 
     public void seed() {
@@ -41,6 +37,7 @@ public class AppData implements java.io.Serializable {
         roomTypeList = new ArrayList<RoomType>();
         roomList = new ArrayList<Room>();
         customerList = new ArrayList<Customer>();
+        bookingList = new ArrayList<Booking>();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
 
         // seed Users here
@@ -65,6 +62,13 @@ public class AppData implements java.io.Serializable {
         newRoom.setRoomNumber("100");
         newRoom.setFloor("1");
         roomList.add(newRoom);
+
+        Room sovRoom = new Room();
+        sovRoom.setRoomType("Double");
+        sovRoom.setRoomNumber("200");
+        sovRoom.setFloor("2");
+        sovRoom.setBookStatus("Active");
+        roomList.add(sovRoom);
 
         //seed Customer
         Customer newCustomer = new Customer();
@@ -101,6 +105,7 @@ public class AppData implements java.io.Serializable {
     }
 
     public static AppData loadData() {
+        System.out.println("Loading from seralized data store ...");
         AppData appData = null;
         try {
             FileInputStream fileIn = new FileInputStream(DATA_FILE);
@@ -115,6 +120,10 @@ public class AppData implements java.io.Serializable {
             c.printStackTrace();
         } catch (Exception e) {
             System.out.println("Failed to load data file " + DATA_FILE);
+        }
+        if (appData != null) {
+          System.out.println("Customer ... " + appData.getCustomerList().size());
+          System.out.println("Booking ... " + appData.getBookingList().size());
         }
         return appData;
     }
@@ -145,12 +154,20 @@ public class AppData implements java.io.Serializable {
         }
         return null;
     }
-    
-        public static void createBooking() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+    public void createBooking(Customer customer, RoomType roomType, java.util.Date checkInDate, java.util.Date checkOutDate, float totalPrice, int numOfGuests) {
+        Booking booking = new Booking();
+                booking.setRoomType(roomType.getName());
+        booking.setCustomerId(customer.getId());
+        booking.setCheckInDate(checkInDate);
+        booking.setCheckOutDate(checkOutDate);
+        booking.setTotalPrice(totalPrice);
+        
+        this.bookingList.add(booking);
+        AppData.saveData(this);
+        System.out.println("Booking CREATED");
     }
-    
-    
+
     public void registerNewCustomer(String firstName, String lastName, Date dob, String address1, String address2, String email, String password, String creditCardNumber, int creditCardMonth, int creditCardYear) {
         Customer cus = new Customer();
         cus.setFirstName(firstName);
@@ -162,8 +179,9 @@ public class AppData implements java.io.Serializable {
         cus.setPassword(password);
         System.out.println("adding");
         customerList.add(cus);
-        
+
         AppData.saveData(this);
+        System.out.println("Customer CREATED");
     }
 
     public List<Customer> getCustomerList() {
@@ -198,4 +216,14 @@ public class AppData implements java.io.Serializable {
         this.roomTypeList = roomTypeList;
     }
 
+    public List<Booking> getBookingList() {
+        return bookingList;
+    }
+
+    public void setBookingList(List<Booking> bookingList) {
+        this.bookingList = bookingList;
+    }
+
+    
+    
 }

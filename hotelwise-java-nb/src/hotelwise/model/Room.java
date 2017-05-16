@@ -9,10 +9,21 @@ package hotelwise.model;
  *
  * @author dominic
  */
-public class Room implements java.io.Serializable  {
+public class Room implements java.io.Serializable {
+
     private String roomType;
     private String roomNumber;
     private String floor;
+    private String bookStatus; //null = not booked, Confirmed = booking created, 
+        //Active = booking happening now, Completed = booking already finished
+
+    public String getBookStatus() {
+        return bookStatus;
+    }
+
+    public void setBookStatus(String bookStatus) {
+        this.bookStatus = bookStatus;
+    }
 
     /**
      * @return the roomNumber
@@ -49,6 +60,5 @@ public class Room implements java.io.Serializable  {
     public void setRoomType(String roomType) {
         this.roomType = roomType;
     }
-    
-    
+
 }
