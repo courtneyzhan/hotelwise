@@ -32,6 +32,7 @@ public class Hotelwise {
     public static WelcomeForm welcomeForm;
     public static StaffLogInForm staffLoginForm;
     public static StaffHomeForm staffHomeForm;
+    public static StaffBookingsForm staffBookingsForm;
 
     public static AppData appData;
     public static Connection conn;
@@ -86,6 +87,9 @@ public class Hotelwise {
         
         staffHomeForm = new StaffHomeForm();
         staffHomeForm.setVisible(false);
+        
+        staffBookingsForm = new StaffBookingsForm(appData);
+        staffBookingsForm.setVisible(false);
     }
 
     //Login method; in the customer log in form, it checks the inputted email and password against registered customers in the db

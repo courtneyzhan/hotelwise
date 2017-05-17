@@ -170,6 +170,7 @@ public class AppData implements java.io.Serializable {
 
     public void registerNewCustomer(String firstName, String lastName, Date dob, String address1, String address2, String email, String password, String creditCardNumber, int creditCardMonth, int creditCardYear) {
         Customer cus = new Customer();
+        cus.setId(customerList.size() + 1);
         cus.setFirstName(firstName);
         cus.setLastName(lastName);
         cus.setDob(dob);

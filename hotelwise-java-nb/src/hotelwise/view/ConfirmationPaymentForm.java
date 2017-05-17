@@ -107,6 +107,7 @@ public class ConfirmationPaymentForm extends AbstractForm {
             }
         });
 
+        customerLabel.setEditable(false);
         customerLabel.setText("jTextField1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
