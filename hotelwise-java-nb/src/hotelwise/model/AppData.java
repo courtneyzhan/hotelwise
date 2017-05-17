@@ -21,7 +21,6 @@ import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 public class AppData implements java.io.Serializable {
 
     private List<User> userList;
@@ -122,8 +121,8 @@ public class AppData implements java.io.Serializable {
             System.out.println("Failed to load data file " + DATA_FILE);
         }
         if (appData != null) {
-          System.out.println("Customer ... " + appData.getCustomerList().size());
-          System.out.println("Booking ... " + appData.getBookingList().size());
+            System.out.println("Customer ... " + appData.getCustomerList().size());
+            System.out.println("Booking ... " + appData.getBookingList().size());
         }
         return appData;
     }
@@ -157,12 +156,12 @@ public class AppData implements java.io.Serializable {
 
     public void createBooking(Customer customer, RoomType roomType, java.util.Date checkInDate, java.util.Date checkOutDate, float totalPrice, int numOfGuests) {
         Booking booking = new Booking();
-                booking.setRoomType(roomType.getName());
+        booking.setRoomType(roomType.getName());
         booking.setCustomerId(customer.getId());
         booking.setCheckInDate(checkInDate);
         booking.setCheckOutDate(checkOutDate);
         booking.setTotalPrice(totalPrice);
-        
+
         this.bookingList.add(booking);
         AppData.saveData(this);
         System.out.println("Booking CREATED");
@@ -225,6 +224,4 @@ public class AppData implements java.io.Serializable {
         this.bookingList = bookingList;
     }
 
-    
-    
 }

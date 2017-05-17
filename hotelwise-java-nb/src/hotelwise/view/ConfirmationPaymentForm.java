@@ -5,6 +5,7 @@
  */
 package hotelwise.view;
 
+import static hotelwise.Hotelwise.*;
 import hotelwise.model.AppData;
 import hotelwise.model.RoomType;
 
@@ -223,6 +224,8 @@ public class ConfirmationPaymentForm extends AbstractForm {
     private void payButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payButtonActionPerformed
         //check that there is something in the textfields
         appData.createBooking(customer, roomType, checkInDate, checkOutDate, totalPrice, numOfGuests);
+        confirmForm.setVisible(false);
+        cusFinishBookForm.setVisible(true);
     }//GEN-LAST:event_payButtonActionPerformed
 
 
