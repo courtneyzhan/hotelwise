@@ -28,61 +28,161 @@ public class StaffHomeForm extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        incorrectTextField = new javax.swing.JTextField();
+        bookingButton = new javax.swing.JButton();
+        customerButton = new javax.swing.JButton();
+        incorrectTextField1 = new javax.swing.JTextField();
+        incorrectTextField3 = new javax.swing.JTextField();
+        incorrectTextField4 = new javax.swing.JTextField();
+        incorrectTextField5 = new javax.swing.JTextField();
+        incorrectTextField6 = new javax.swing.JTextField();
+        incorrectTextField7 = new javax.swing.JTextField();
+        customerButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel1.setText("Staff Log In");
+        jLabel1.setText("Staff Home");
 
-        jLabel2.setText("Username:");
+        bookingButton.setText("Bookings");
 
-        incorrectTextField.setEditable(false);
-        incorrectTextField.setText("The username/password you entered is incorrect");
-        incorrectTextField.addActionListener(new java.awt.event.ActionListener() {
+        customerButton.setText("Customers");
+
+        incorrectTextField1.setEditable(false);
+        incorrectTextField1.setText("View all customers");
+        incorrectTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                incorrectTextFieldActionPerformed(evt);
+                incorrectTextField1ActionPerformed(evt);
             }
         });
+
+        incorrectTextField3.setEditable(false);
+        incorrectTextField3.setText("View all bookings");
+        incorrectTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                incorrectTextField3ActionPerformed(evt);
+            }
+        });
+
+        incorrectTextField4.setEditable(false);
+        incorrectTextField4.setText("Edit customers");
+        incorrectTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                incorrectTextField4ActionPerformed(evt);
+            }
+        });
+
+        incorrectTextField5.setEditable(false);
+        incorrectTextField5.setText("Delete customers");
+        incorrectTextField5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                incorrectTextField5ActionPerformed(evt);
+            }
+        });
+
+        incorrectTextField6.setEditable(false);
+        incorrectTextField6.setText("Edit bookings");
+        incorrectTextField6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                incorrectTextField6ActionPerformed(evt);
+            }
+        });
+
+        incorrectTextField7.setEditable(false);
+        incorrectTextField7.setText("Delete bookings");
+        incorrectTextField7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                incorrectTextField7ActionPerformed(evt);
+            }
+        });
+
+        customerButton1.setText("Logout");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(24, 24, 24)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(incorrectTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)
-                            .addGap(132, 132, 132)))
-                    .addContainerGap(25, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addComponent(bookingButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(customerButton)
+                        .addGap(44, 44, 44))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(146, 146, 146))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(incorrectTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(incorrectTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(incorrectTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(incorrectTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(incorrectTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(incorrectTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(19, 19, 19))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(customerButton1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(99, 99, 99)
-                    .addComponent(jLabel1)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(incorrectTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(12, 12, 12)
-                    .addComponent(jLabel2)
-                    .addContainerGap(103, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(customerButton)
+                    .addComponent(bookingButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(incorrectTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(incorrectTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(incorrectTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(incorrectTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(incorrectTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(incorrectTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addComponent(customerButton1)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void incorrectTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incorrectTextFieldActionPerformed
+    private void incorrectTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incorrectTextField1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_incorrectTextFieldActionPerformed
+    }//GEN-LAST:event_incorrectTextField1ActionPerformed
+
+    private void incorrectTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incorrectTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_incorrectTextField3ActionPerformed
+
+    private void incorrectTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incorrectTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_incorrectTextField4ActionPerformed
+
+    private void incorrectTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incorrectTextField5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_incorrectTextField5ActionPerformed
+
+    private void incorrectTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incorrectTextField6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_incorrectTextField6ActionPerformed
+
+    private void incorrectTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incorrectTextField7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_incorrectTextField7ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -120,8 +220,15 @@ public class StaffHomeForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField incorrectTextField;
+    private javax.swing.JButton bookingButton;
+    private javax.swing.JButton customerButton;
+    private javax.swing.JButton customerButton1;
+    private javax.swing.JTextField incorrectTextField1;
+    private javax.swing.JTextField incorrectTextField3;
+    private javax.swing.JTextField incorrectTextField4;
+    private javax.swing.JTextField incorrectTextField5;
+    private javax.swing.JTextField incorrectTextField6;
+    private javax.swing.JTextField incorrectTextField7;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
