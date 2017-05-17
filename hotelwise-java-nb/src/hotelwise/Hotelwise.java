@@ -29,6 +29,9 @@ public class Hotelwise {
     public static AvailableRoomsListForm roomsListForm;
     public static ConfirmationPaymentForm confirmForm;
     public static CustomerRegisterForm cusRegisterForm;
+    public static WelcomeForm welcomeForm;
+    public static StaffLogInForm staffLoginForm;
+    public static StaffHomeForm staffHomeForm;
 
     public static AppData appData;
     public static Connection conn;
@@ -61,7 +64,7 @@ public class Hotelwise {
 
         // Initializing the forms that will be used in the program. At the start only the Customer Log In Form is visible.
         loginForm = new CustomerLogInForm();
-        loginForm.setVisible(true);
+        loginForm.setVisible(false);
 
         searchForm = new RoomSearchForm();
         searchForm.setVisible(false);
@@ -74,6 +77,15 @@ public class Hotelwise {
 
         cusRegisterForm = new CustomerRegisterForm(appData);
         cusRegisterForm.setVisible(false);
+
+        welcomeForm = new WelcomeForm();
+        welcomeForm.setVisible(true);
+
+        staffLoginForm = new StaffLogInForm();
+        staffLoginForm.setVisible(false);
+        
+        staffHomeForm = new StaffHomeForm();
+        staffHomeForm.setVisible(false);
     }
 
     //Login method; in the customer log in form, it checks the inputted email and password against registered customers in the db
@@ -207,7 +219,7 @@ public class Hotelwise {
         Room chosenRoom;
         Float unitPrice = appData.findRoomTypeByName(roomType).getPrice();
         Float total = unitPrice * duration;
-                
+
         for (Room room : appData.getRoomList()) {
             if (room.getRoomType().equals(roomType) && (room.getBookStatus() != "Active" || room.getBookStatus() != "Confirmed")) {
                 roomFound = true;
@@ -297,6 +309,30 @@ public class Hotelwise {
             System.out.println("Display error on search form ...");
             searchForm.setVisible(true);
 
+        }
+    }
+
+    public static void staffLogin(String username, String password) {
+        System.out.println(username);
+        System.out.println(password);
+        //System.out.println(appData.findCustomerByEmail("a@b.com"));
+        boolean userFound = false;
+        for (User user : appData.getUserList()) {
+            if (user.getLogin().equals(username) && user.getPassword().equals(password)) {
+                userFound = true;
+                break;
+            }
+        }
+
+        if (userFound) {
+            // authenticated, go to next form
+            staffLoginForm.setVisible(false);
+            staffHomeForm.setVisible(true);
+        } else {
+            //login unsuccessful, will ask user to try again.
+            //DEBUG
+            System.out.println("Failed to login");
+            staffLoginForm.setVisible(true);
         }
     }
 }

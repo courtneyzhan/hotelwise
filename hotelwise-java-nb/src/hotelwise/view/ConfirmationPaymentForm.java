@@ -220,6 +220,7 @@ public class ConfirmationPaymentForm extends AbstractForm {
     }//GEN-LAST:event_durationStayTextFieldActionPerformed
 
     private void payButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payButtonActionPerformed
+        //check that there is something in the textfields
         appData.createBooking(customer, roomType, checkInDate, checkOutDate, totalPrice, numOfGuests);
     }//GEN-LAST:event_payButtonActionPerformed
 
