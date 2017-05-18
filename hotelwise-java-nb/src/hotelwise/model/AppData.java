@@ -47,28 +47,87 @@ public class AppData implements java.io.Serializable {
         userList.add(newUser);
 
         //seed RoomType
-        RoomType singleRoom = new RoomType();
-        singleRoom.setId(1);
+        int roomTypeID = 1;
+        RoomType singleRoom = new RoomType();      
+        singleRoom.setId(roomTypeID++);
         singleRoom.setName("Single");
         singleRoom.setPrice((float) 25.0);
         singleRoom.setFacility("Wifi");
-        singleRoom.setDescription("description");
+        singleRoom.setDescription("Single");
         roomTypeList.add(singleRoom);
-
+        
+        RoomType singleOceanRoom = new RoomType();
+        singleOceanRoom.setId(1);
+        singleOceanRoom.setName("Single with Ocean View");
+        singleOceanRoom.setPrice((float) 50.0);
+        singleOceanRoom.setFacility("Wifi");
+        singleOceanRoom.setDescription("description");
+        roomTypeList.add(singleOceanRoom);
+        
+        RoomType doubleRoom = new RoomType();
+        singleRoom.setId(roomTypeID++);
+        doubleRoom.setName("Double");
+        doubleRoom.setPrice((float) 75.0);
+        doubleRoom.setFacility("Wifi");
+        doubleRoom.setDescription("description");
+        roomTypeList.add(doubleRoom);
+        
+        RoomType familyRoom = new RoomType();
+        singleRoom.setId(roomTypeID++);
+        familyRoom.setName("Family");
+        familyRoom.setPrice((float) 100.0);
+        familyRoom.setFacility("Wifi");
+        familyRoom.setDescription("description");
+        roomTypeList.add(familyRoom);
+        
         //seed Room
-        Room newRoom = new Room();
-        newRoom.setRoomType("Single");
-        newRoom.setRoomNumber("100");
-        newRoom.setFloor("1");
-        roomList.add(newRoom);
+        Room room101 = new Room();
+        room101.setRoomType("Single");
+        room101.setRoomNumber("101");
+        room101.setFloor("1");
+        roomList.add(room101);
+        
+        Room room102 = new Room();
+        room102.setRoomType("Single");
+        room102.setRoomNumber("102");
+        room102.setFloor("2");
+        roomList.add(room101);
 
-        Room sovRoom = new Room();
-        sovRoom.setRoomType("Double");
-        sovRoom.setRoomNumber("200");
-        sovRoom.setFloor("2");
-        sovRoom.setBookStatus("Active");
-        roomList.add(sovRoom);
+        Room room201 = new Room();
+        room201.setRoomType("Double");
+        room201.setRoomNumber("201");
+        room201.setFloor("2");
+        room201.setStatus("Available");
+        roomList.add(room201);
 
+        Room room202 = new Room();
+        room202.setRoomType("Double");
+        room202.setRoomNumber("202");
+        room202.setFloor("2");
+        room202.setStatus("Available");
+        roomList.add(room202);
+        
+        Room room301 = new Room();
+        room301.setRoomType("Double");
+        room301.setRoomNumber("301");
+        room301.setFloor("3");
+        room301.setStatus("Available");
+        roomList.add(room301);
+
+        Room room302 = new Room();
+        room302.setRoomType("Single with Ocean View");
+        room302.setRoomNumber("302");
+        room302.setFloor("3");
+        room302.setStatus("Not Available");
+        roomList.add(room302);
+        
+        Room room401 = new Room();
+        room401.setRoomType("Family");
+        room401.setRoomNumber("401");
+        room401.setFloor("4");
+        room401.setStatus("Available");
+        roomList.add(room401);
+        
         //seed Customer
         Customer newCustomer = new Customer();
         newCustomer.setId(1);

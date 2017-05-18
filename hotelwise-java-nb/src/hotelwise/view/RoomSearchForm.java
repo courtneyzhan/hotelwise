@@ -6,6 +6,7 @@
 package hotelwise.view;
 
 import hotelwise.Hotelwise;
+import static hotelwise.Hotelwise.searchForm;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -188,13 +189,15 @@ public class RoomSearchForm extends AbstractForm {
         Long time = today.getTime();
         Date todayMidnight = new Date(time - time % (24 * 60 * 60 * 1000));
 
+        String roomTypeStr = (String) roomTypeComboBox.getSelectedItem();
         java.util.Date checkInDate = null, checkOutDate = null;
         try {
             checkInDate = (java.util.Date) formatter.parse(arrivalTextField.getText());
             checkOutDate = (java.util.Date) formatter.parse(departureTextField.getText());
-
         } catch (ParseException ex) {
             Logger.getLogger(RoomSearchForm.class.getName()).log(Level.SEVERE, null, ex);
+            this.showIncorrectError("Invalid dates entered: '" + arrivalTextField.getText() + "', '" + departureTextField.getText() + "'");
+            return;
         }
 
         if (arrivalTextField.getText().equals(departureTextField.getText())) {
@@ -203,9 +206,18 @@ public class RoomSearchForm extends AbstractForm {
             showIncorrectError("Check out will after Check in date");
             System.out.println("Wrong input");
         } else if (checkInDate.before(todayMidnight)) {
-            // TODO   having trouble update the error message on form and display
             showIncorrectError("Arrival dates should be after today's date");
             System.out.println("TOO EARLY");
+        } else if (Hotelwise.isRoomTypeAvailable(roomTypeStr, checkInDate, checkOutDate)){
+           // Success, Found a room for the room type;
+           // Prepare next page, display Room (room type)  details (including price)
+           Hotelwise.displayRoomDetails(roomTypeStr, checkInDate, checkOutDate);
+
+        } else { 
+            showIncorrectError("Sorry there are no rooms of that type available");
+            System.out.println("No available rooms");
+            
+/*            
         } else {
             Hotelwise.roomsListForm.hideAllPanel();
             unavailableTextField.setVisible(true);
@@ -214,10 +226,12 @@ public class RoomSearchForm extends AbstractForm {
                 showIncorrectError("The arrival date and the departure date must be different.");
             }
             try {
-                Hotelwise.roomSearch(Integer.parseInt(numOfGuestsSpinner.getValue().toString()), arrivalTextField.getText(), departureTextField.getText(), (String) roomTypeComboBox.getSelectedItem());
+                Hotelwise.roomSearch(Integer.parseInt(numOfGuestsSpinner.getValue().toString()), checkInDate, checkOutDate), roomTypeStr);
             } catch (Exception ex) {
                 Logger.getLogger(RoomSearchForm.class.getName()).log(Level.SEVERE, null, ex);
             }
+*/            
+            
         }
     }//GEN-LAST:event_searchButtonActionPerformed
 
@@ -281,11 +295,6 @@ public class RoomSearchForm extends AbstractForm {
     private javax.swing.JTextField unavailableTextField;
     // End of variables declaration//GEN-END:variables
 
-    public void showSearchError() {
-        // System.out.println("calling to be visible");
-        unavailableTextField.setVisible(true);
-        this.layout();
-    }
 
     public void showIncorrectError(String errorText) {
         incorrectTextField1.setVisible(true);

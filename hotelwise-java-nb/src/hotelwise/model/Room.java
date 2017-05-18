@@ -14,15 +14,15 @@ public class Room implements java.io.Serializable {
     private String roomType;
     private String roomNumber;
     private String floor;
-    private String bookStatus; //null = not booked, Confirmed = booking created, 
+    private String status; //null = not booked, Confirmed = booking created, 
         //Active = booking happening now, Completed = booking already finished
 
-    public String getBookStatus() {
-        return bookStatus;
+    public String getStatus() {
+        return status;
     }
 
-    public void setBookStatus(String bookStatus) {
-        this.bookStatus = bookStatus;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     /**

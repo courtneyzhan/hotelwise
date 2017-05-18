@@ -20,7 +20,8 @@ public class Booking implements java.io.Serializable {
     private Date checkOutDate;
     private float totalPrice;
     private int numOfGuests;
-
+    private String status;
+    
     /**
      * @return the roomType
      */
@@ -104,5 +105,23 @@ public class Booking implements java.io.Serializable {
     public void setNumOfGuests(int numOfGuests) {
         this.numOfGuests = numOfGuests;
     }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public boolean isActive() {
+        if ("Cancelled".equalsIgnoreCase(status) || "Completed".equalsIgnoreCase(status)) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+    
+    
 
 }

@@ -9,6 +9,7 @@ import hotelwise.view.*;
 import hotelwise.model.*;
 import java.sql.*;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -85,13 +86,13 @@ public class Hotelwise {
 
         staffLoginForm = new StaffLogInForm();
         staffLoginForm.setVisible(false);
-        
+
         staffHomeForm = new StaffHomeForm();
         staffHomeForm.setVisible(false);
-        
+
         staffBookingsForm = new StaffBookingsForm(appData);
         staffBookingsForm.setVisible(false);
-        
+
         cusFinishBookForm = new CustomerFinishBookForm();
         cusFinishBookForm.setVisible(false);
     }
@@ -204,7 +205,7 @@ public class Hotelwise {
 
         Long time = today.getTime();
         Date todayMidnight = new Date(time - time % (24 * 60 * 60 * 1000));
-/*
+        /*
         if (checkOutDate.before(new java.util.Date(checkInDate.getTime() + time % (24 * 60 * 60 * 1000)))) {
             searchForm.showIncorrectError("Check out will after Check in date");
             System.out.println("Wrong input");
@@ -213,26 +214,22 @@ public class Hotelwise {
             searchForm.showIncorrectError("Arrival dates should be after today's date");
             System.out.println("TOO EARLY");
         }
-*/
+         */
         int daysbetween = (int) (checkOutDate.getTime() - checkInDate.getTime());
         int duration = (int) TimeUnit.DAYS.convert(daysbetween, TimeUnit.MILLISECONDS);
         //TODO PASSES IN ZERO
         Hotelwise.confirmForm.setDurationDays(duration);
         confirmForm.setNumOfGuests(numOfGuests);
-        System.out.println("numOfGuests = " + numOfGuests);
         System.out.println("Number of guests: " + numOfGuests + ", Arrival Date: " + checkInDate + ", Departure Date: " + checkOutDate + ",  Room Type ID: " + roomType + ", Days between: " + TimeUnit.DAYS.convert(daysbetween, TimeUnit.MILLISECONDS));
         boolean roomFound = false;
-        Room chosenRoom;
-        
+        /*       
         Float unitPrice = appData.findRoomTypeByName(roomType).getPrice();
         Float total = unitPrice * duration;
 
         for (Room room : appData.getRoomList()) {
-            if (room.getRoomType().equals(roomType) && (room.getBookStatus() != "Active" || room.getBookStatus() != "Confirmed")) {
+            if (room.getRoomType().equals(roomType) && !(("Active").equals(room.getStatus()) || ("Not Available").equals(room.getStatus()))) {
                 roomFound = true;
-                chosenRoom = room;
                 roomsListForm.showPanel(roomType);
-
                 confirmForm.setPrice(total);
                 confirmForm.setRoomType(appData.findRoomTypeByName(roomType));
                 confirmForm.setCheckInDate(checkInDate);
@@ -249,10 +246,13 @@ public class Hotelwise {
             System.out.println("shown");
         } else {
             //search form displays error and asks user to redo form
+            System.out.println("NOT FOUND");
             System.out.println("Display error on search form ...");
+            searchForm.showIncorrectError("Sorry there are no rooms of that type available");
             searchForm.setVisible(true);
 
         }
+         */
     }
 
     public static void roomSearchByDatabase(Integer numOfGuests, String arrivalDate, String departureDate, Integer roomType) throws Exception {
@@ -268,12 +268,8 @@ public class Hotelwise {
             return;
         }
 
-        int daysbetween = (int) (checkOutDate.getTime() - checkInDate.getTime());
-        int duration = (int) TimeUnit.DAYS.convert(daysbetween, TimeUnit.MILLISECONDS);
-        Hotelwise.confirmForm.setDurationDays(duration);
         //Hotelwise.confirmForm.setNumOfGuests(numOfGuests);
-
-        System.out.println("Number of guests: " + numOfGuests + ", Arrival Date: " + checkInDate + ", Departure Date: " + checkOutDate + ",  Room Type ID: " + roomType + ", Days between: " + TimeUnit.DAYS.convert(daysbetween, TimeUnit.MILLISECONDS));
+        System.out.println("Number of guests: " + numOfGuests + ", Arrival Date: " + checkInDate + ", Departure Date: " + checkOutDate + ",  Room Type ID: " + roomType);
         boolean roomFound = false;
         // we get login request, now shall check database (username and password)
         String sql = "SELECT * FROM Rooms WHERE room_type_id = ?;";
@@ -291,7 +287,6 @@ public class Hotelwise {
                 System.out.println("Room found: " + id);
                 //roomsListForm.showPanel(id);
                 //confirmForm.setPrice(id);
-
             }
             rs.close();
             pstmt.close();
@@ -341,4 +336,70 @@ public class Hotelwise {
             staffLoginForm.setVisible(true);
         }
     }
+
+    /**
+     * Assume a booking is recorded in system for stays. After customers left (checkout), its booking is marked completed 
+     * 
+     * @param roomType
+     * @param checkInDate
+     * @param checkOutDate
+     * @return 
+     */
+    public static boolean isRoomTypeAvailable(String roomType, java.util.Date checkInDate, java.util.Date checkOutDate) {
+
+        int bookedCountForThePeriod = 0;
+        int availableRooms = 0;
+
+        for (Room room : appData.getRoomList()) {
+            if (room.getRoomType().equals(roomType)) {
+                availableRooms += 1;
+            }
+        }
+
+        for (int i = 0; i < appData.getBookingList().size(); i++) {
+
+            Booking booking = appData.getBookingList().get(i);
+            if (!booking.getRoomType().equals(roomType)) { // don't worry, is the type of room customer interested
+                continue;
+            }
+            if (booking.isActive()) { // a booking is valid and not completed.
+                // we are checking booking for target room types
+                java.util.Date startB = booking.getCheckInDate();
+                java.util.Date endB = booking.getCheckOutDate();
+
+                if (endB.before(checkInDate) || startB.after(checkOutDate)) {
+                    // no confilcts; 
+                } else {
+                    bookedCountForThePeriod += 1;
+                }
+            }
+        }
+
+        return (availableRooms > bookedCountForThePeriod);
+    }
+
+    /**
+     * Room for (room type) is available,
+     *
+     * @param roomType
+     */
+    public static void displayRoomDetails(String roomType, java.util.Date checkInDate, java.util.Date checkOutDate) {
+        int daysbetween = (int) (checkOutDate.getTime() - checkInDate.getTime());
+        int duration = (int) TimeUnit.DAYS.convert(daysbetween, TimeUnit.MILLISECONDS);
+        Hotelwise.confirmForm.setDurationDays(duration);
+        Float unitPrice = appData.findRoomTypeByName(roomType).getPrice();
+        Float total = unitPrice * duration;
+
+        roomsListForm.showPanel(roomType);
+        confirmForm.setPrice(total);
+        confirmForm.setRoomType(appData.findRoomTypeByName(roomType));
+        confirmForm.setCheckInDate(checkInDate);
+        confirmForm.setCheckOutDate(checkOutDate);
+        confirmForm.setTotalPrice(total);
+
+        searchForm.setVisible(false);
+        roomsListForm.setVisible(true);
+
+    }
+
 }
