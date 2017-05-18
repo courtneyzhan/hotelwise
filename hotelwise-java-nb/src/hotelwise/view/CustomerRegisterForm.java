@@ -222,7 +222,6 @@ public class CustomerRegisterForm extends javax.swing.JFrame {
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
 
-        //System.out.println("User click registere button");
         if (reenterPasswordTextField.getText().equals(passwordTextField.getText())) {
             try {
                 //java.util.Date date = new java.util.Date();

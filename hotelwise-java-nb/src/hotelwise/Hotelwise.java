@@ -65,7 +65,7 @@ public class Hotelwise {
             AppData.saveData(appData);
         }
 
-        // Initializing the forms that will be used in the program. At the start only the Customer Log In Form is visible.
+        // Initializing the forms that will be used in the program. At the start only the Welcome Form is visible.
         loginForm = new CustomerLogInForm();
         loginForm.setVisible(false);
 
@@ -204,11 +204,12 @@ public class Hotelwise {
         java.util.Date today = currentDateCal.getTime();
 
         Long time = today.getTime();
-        Date todayMidnight = new Date(time - time % (24 * 60 * 60 * 1000));
-
+        Date todayMidnight = new Date(time - time % (24 * 60 * 60 * 1000)); //today's time set to midnight
+        
+        //TODO difference in days
         int daysbetween = (int) (checkOutDate.getTime() - checkInDate.getTime());
-        int duration = (int) TimeUnit.DAYS.convert(daysbetween, TimeUnit.MILLISECONDS);
-        //TODO PASSES IN ZERO
+        int duration = (int) TimeUnit.DAYS.convert(daysbetween, TimeUnit.MILLISECONDS); //converts the time between arrival and departure dates from milliseconds to days
+
         Hotelwise.confirmForm.setDurationDays(duration);
         System.out.println("numOfGuests = " + numOfGuests);
         confirmForm.setNumOfGuests(numOfGuests);

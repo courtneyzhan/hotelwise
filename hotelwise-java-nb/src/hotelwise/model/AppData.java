@@ -163,7 +163,7 @@ public class AppData implements java.io.Serializable {
     }
 
     public static AppData loadData() {
-        System.out.println("Loading from seralized data store ...");
+        System.out.println("Loading from serialized data store ...");
         AppData appData = null;
         try {
             FileInputStream fileIn = new FileInputStream(DATA_FILE);
@@ -174,7 +174,7 @@ public class AppData implements java.io.Serializable {
         } catch (IOException i) {
             i.printStackTrace();
         } catch (ClassNotFoundException c) {
-            System.out.println("Employee class not found");
+            System.out.println("Class not found");
             c.printStackTrace();
         } catch (Exception e) {
             System.out.println("Failed to load data file " + DATA_FILE);
