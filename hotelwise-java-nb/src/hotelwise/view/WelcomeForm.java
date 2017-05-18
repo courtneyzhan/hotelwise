@@ -192,7 +192,6 @@ public class WelcomeForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void emailTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextFieldActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_emailTextFieldActionPerformed
 
     private void SignInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignInButtonActionPerformed
@@ -200,26 +199,21 @@ public class WelcomeForm extends javax.swing.JFrame {
     }//GEN-LAST:event_SignInButtonActionPerformed
 
     private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_passwordFieldActionPerformed
 
     private void incorrectTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incorrectTextFieldActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_incorrectTextFieldActionPerformed
 
     private void registerCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerCustomerButtonActionPerformed
-        // TODO add your handling code here:
 
     }//GEN-LAST:event_registerCustomerButtonActionPerformed
 
     private void customerStartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerStartButtonActionPerformed
-        // TODO add your handling code here:
         loginForm.setVisible(true);
         welcomeForm.setVisible(false);
     }//GEN-LAST:event_customerStartButtonActionPerformed
 
     private void staffLogInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_staffLogInButtonActionPerformed
-        // TODO add your handling code here:
         welcomeForm.setVisible(false);
         staffLoginForm.setVisible(true);
     }//GEN-LAST:event_staffLogInButtonActionPerformed

@@ -205,54 +205,16 @@ public class Hotelwise {
 
         Long time = today.getTime();
         Date todayMidnight = new Date(time - time % (24 * 60 * 60 * 1000));
-        /*
-        if (checkOutDate.before(new java.util.Date(checkInDate.getTime() + time % (24 * 60 * 60 * 1000)))) {
-            searchForm.showIncorrectError("Check out will after Check in date");
-            System.out.println("Wrong input");
-        } else if (checkInDate.before(todayMidnight)) {
-            // TODO   having trouble update the error message on form and display
-            searchForm.showIncorrectError("Arrival dates should be after today's date");
-            System.out.println("TOO EARLY");
-        }
-         */
+
         int daysbetween = (int) (checkOutDate.getTime() - checkInDate.getTime());
         int duration = (int) TimeUnit.DAYS.convert(daysbetween, TimeUnit.MILLISECONDS);
         //TODO PASSES IN ZERO
         Hotelwise.confirmForm.setDurationDays(duration);
+        System.out.println("numOfGuests = " + numOfGuests);
         confirmForm.setNumOfGuests(numOfGuests);
         System.out.println("Number of guests: " + numOfGuests + ", Arrival Date: " + checkInDate + ", Departure Date: " + checkOutDate + ",  Room Type ID: " + roomType + ", Days between: " + TimeUnit.DAYS.convert(daysbetween, TimeUnit.MILLISECONDS));
         boolean roomFound = false;
-        /*       
-        Float unitPrice = appData.findRoomTypeByName(roomType).getPrice();
-        Float total = unitPrice * duration;
-
-        for (Room room : appData.getRoomList()) {
-            if (room.getRoomType().equals(roomType) && !(("Active").equals(room.getStatus()) || ("Not Available").equals(room.getStatus()))) {
-                roomFound = true;
-                roomsListForm.showPanel(roomType);
-                confirmForm.setPrice(total);
-                confirmForm.setRoomType(appData.findRoomTypeByName(roomType));
-                confirmForm.setCheckInDate(checkInDate);
-                confirmForm.setCheckOutDate(checkOutDate);
-                confirmForm.setTotalPrice(total);
-                break;
-            }
-        }
-
-        if (roomFound) {
-            // authenticated, go to next form
-            searchForm.setVisible(false);
-            roomsListForm.setVisible(true);
-            System.out.println("shown");
-        } else {
-            //search form displays error and asks user to redo form
-            System.out.println("NOT FOUND");
-            System.out.println("Display error on search form ...");
-            searchForm.showIncorrectError("Sorry there are no rooms of that type available");
-            searchForm.setVisible(true);
-
-        }
-         */
+        
     }
 
     public static void roomSearchByDatabase(Integer numOfGuests, String arrivalDate, String departureDate, Integer roomType) throws Exception {
@@ -383,7 +345,7 @@ public class Hotelwise {
      *
      * @param roomType
      */
-    public static void displayRoomDetails(String roomType, java.util.Date checkInDate, java.util.Date checkOutDate) {
+    public static void displayRoomDetails(String roomType, java.util.Date checkInDate, java.util.Date checkOutDate, int numOfGuests) {
         int daysbetween = (int) (checkOutDate.getTime() - checkInDate.getTime());
         int duration = (int) TimeUnit.DAYS.convert(daysbetween, TimeUnit.MILLISECONDS);
         Hotelwise.confirmForm.setDurationDays(duration);
@@ -396,6 +358,7 @@ public class Hotelwise {
         confirmForm.setCheckInDate(checkInDate);
         confirmForm.setCheckOutDate(checkOutDate);
         confirmForm.setTotalPrice(total);
+        confirmForm.setGuests(numOfGuests);
 
         searchForm.setVisible(false);
         roomsListForm.setVisible(true);

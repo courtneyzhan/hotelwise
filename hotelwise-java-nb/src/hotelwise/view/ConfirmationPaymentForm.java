@@ -213,16 +213,13 @@ public class ConfirmationPaymentForm extends AbstractForm {
     }// </editor-fold>//GEN-END:initComponents
 
     private void roomTypeTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roomTypeTextFieldActionPerformed
-        // TODO add your handling code here:
 
     }//GEN-LAST:event_roomTypeTextFieldActionPerformed
 
     private void durationStayTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_durationStayTextFieldActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_durationStayTextFieldActionPerformed
 
     private void payButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payButtonActionPerformed
-        //check that there is something in the textfields
         appData.createBooking(customer, roomType, checkInDate, checkOutDate, totalPrice, numOfGuests);
         confirmForm.setVisible(false);
         cusFinishBookForm.setVisible(true);
@@ -254,7 +251,9 @@ public class ConfirmationPaymentForm extends AbstractForm {
         durationStayTextField.setText(Integer.toString(daysbetween));
     }
 
-
+    public void setGuests(int numOfGuests) {
+        guestTextField.setText(numOfGuests + "");
+    }
 
     public void setPrice(float total) {
         priceTextField.setText(String.valueOf(total));

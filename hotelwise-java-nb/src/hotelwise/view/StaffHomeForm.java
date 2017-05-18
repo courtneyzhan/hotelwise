@@ -95,7 +95,6 @@ public class StaffHomeForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
-        // TODO add your handling code here:
         staffHomeForm.setVisible(false);
         welcomeForm.setVisible(true);
     }//GEN-LAST:event_logoutButtonActionPerformed

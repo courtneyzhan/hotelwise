@@ -208,24 +208,19 @@ public class CustomerRegisterForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lastNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lastNameTextFieldActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_lastNameTextFieldActionPerformed
 
     private void firstNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firstNameTextFieldActionPerformed
-        // TODO add your handling code here:
 
     }//GEN-LAST:event_firstNameTextFieldActionPerformed
 
     private void address2TextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_address2TextFieldActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_address2TextFieldActionPerformed
 
     private void address1TextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_address1TextFieldActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_address1TextFieldActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-        // TODO add your handling code here:
 
         //System.out.println("User click registere button");
         if (reenterPasswordTextField.getText().equals(passwordTextField.getText())) {
@@ -248,7 +243,6 @@ public class CustomerRegisterForm extends javax.swing.JFrame {
     }//GEN-LAST:event_registerButtonActionPerformed
 
     private void passwordTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordTextFieldActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_passwordTextFieldActionPerformed
 
     /**

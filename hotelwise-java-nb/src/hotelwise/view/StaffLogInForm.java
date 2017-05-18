@@ -125,7 +125,6 @@ public class StaffLogInForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void usernameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameTextFieldActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_usernameTextFieldActionPerformed
 
     private void SignInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignInButtonActionPerformed
@@ -134,11 +133,9 @@ public class StaffLogInForm extends javax.swing.JFrame {
     }//GEN-LAST:event_SignInButtonActionPerformed
 
     private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_passwordFieldActionPerformed
 
     private void incorrectTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incorrectTextFieldActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_incorrectTextFieldActionPerformed
 
     /**

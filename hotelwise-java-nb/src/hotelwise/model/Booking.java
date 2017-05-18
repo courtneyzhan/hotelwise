@@ -13,7 +13,6 @@ import java.util.Date;
  */
 public class Booking implements java.io.Serializable {
 
-    //TODO change num of adults to numOfGuests and delete num of children
     private String roomType;
     private int customerId;
     private Date checkInDate;

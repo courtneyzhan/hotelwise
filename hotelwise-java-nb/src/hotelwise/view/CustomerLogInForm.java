@@ -143,19 +143,15 @@ public class CustomerLogInForm extends javax.swing.JFrame {
     }//GEN-LAST:event_SignInButtonActionPerformed
 
     private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_passwordFieldActionPerformed
 
     private void emailTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTextFieldActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_emailTextFieldActionPerformed
 
     private void incorrectTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incorrectTextFieldActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_incorrectTextFieldActionPerformed
 
     private void registerCustomerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerCustomerButtonActionPerformed
-        // TODO add your handling code here:
         Hotelwise.loginForm.setVisible(false);
         Hotelwise.cusRegisterForm.setVisible(true);
     }//GEN-LAST:event_registerCustomerButtonActionPerformed
@@ -205,10 +201,5 @@ public class CustomerLogInForm extends javax.swing.JFrame {
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JButton registerCustomerButton;
     // End of variables declaration//GEN-END:variables
-/*
-    public void showLoginError() {
-        // System.out.println("calling to be visible");
-        incorrectTextField.setVisible(true);
-        this.layout();
-    }*/
+
 }

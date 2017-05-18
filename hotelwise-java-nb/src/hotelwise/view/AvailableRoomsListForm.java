@@ -58,7 +58,7 @@ public class AvailableRoomsListForm extends AbstractForm {
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         familyBookingButton3 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
         customerLabel = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -272,10 +272,10 @@ public class AvailableRoomsListForm extends AbstractForm {
                 .addContainerGap(35, Short.MAX_VALUE))
         );
 
-        jButton1.setText("Back");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                backButtonActionPerformed(evt);
             }
         });
 
@@ -301,7 +301,7 @@ public class AvailableRoomsListForm extends AbstractForm {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(88, 88, 88)
                                 .addComponent(TitleLabel))
-                            .addComponent(jButton1))
+                            .addComponent(backButton))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(41, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -325,7 +325,7 @@ public class AvailableRoomsListForm extends AbstractForm {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(familyPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(backButton)
                 .addContainerGap())
         );
 
@@ -333,34 +333,29 @@ public class AvailableRoomsListForm extends AbstractForm {
     }// </editor-fold>//GEN-END:initComponents
 
     private void singleBookingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_singleBookingButtonActionPerformed
-        // TODO add your handling code here:
         System.out.println("SINGLE PRESSED");
         Hotelwise.confirmForm.setVisible(true);
         Hotelwise.roomsListForm.setVisible(false);
     }//GEN-LAST:event_singleBookingButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         Hotelwise.searchForm.setVisible(true);
         Hotelwise.roomsListForm.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_backButtonActionPerformed
 
     private void singleOVBookingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_singleOVBookingButtonActionPerformed
-        // TODO add your handling code here:
         System.out.println("SINGLE OV PRESSED");
         Hotelwise.confirmForm.setVisible(true);
         Hotelwise.roomsListForm.setVisible(false);
     }//GEN-LAST:event_singleOVBookingButtonActionPerformed
 
     private void doubleBookingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doubleBookingButtonActionPerformed
-        // TODO add your handling code here:
         System.out.println("DOUBLE PRESSED");
         Hotelwise.confirmForm.setVisible(true);
         Hotelwise.roomsListForm.setVisible(false);
     }//GEN-LAST:event_doubleBookingButtonActionPerformed
 
     private void familyBookingButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_familyBookingButton3ActionPerformed
-        // TODO add your handling code here:
         System.out.println("FAMILY PRESSED");
         Hotelwise.confirmForm.setVisible(true);
         Hotelwise.roomsListForm.setVisible(false);
@@ -426,13 +421,13 @@ public class AvailableRoomsListForm extends AbstractForm {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel TitleLabel;
+    private javax.swing.JButton backButton;
     private javax.swing.JTextField customerLabel;
     private javax.swing.JButton doubleBookingButton;
     private javax.swing.JPanel doublePanel;
     private javax.swing.JLabel doublePrice;
     private javax.swing.JButton familyBookingButton3;
     private javax.swing.JPanel familyPanel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
