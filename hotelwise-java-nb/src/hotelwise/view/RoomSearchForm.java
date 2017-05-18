@@ -6,6 +6,11 @@
 package hotelwise.view;
 
 import hotelwise.Hotelwise;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.TimeZone;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -173,8 +178,34 @@ public class RoomSearchForm extends AbstractForm {
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+        Calendar currentDateCal = Calendar.getInstance(); //Get the current date
+        TimeZone timeZone = TimeZone.getTimeZone("Australia/Brisbane");
+        currentDateCal.setTimeZone(timeZone);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); //format it as per your requirement
+        String dateNow = formatter.format(currentDateCal.getTime());
+        System.out.println("Now the date is :=>  " + currentDateCal.getTime());
+        java.util.Date today = currentDateCal.getTime();
+        Long time = today.getTime();
+        Date todayMidnight = new Date(time - time % (24 * 60 * 60 * 1000));
+
+        java.util.Date checkInDate = null, checkOutDate = null;
+        try {
+            checkInDate = (java.util.Date) formatter.parse(arrivalTextField.getText());
+            checkOutDate = (java.util.Date) formatter.parse(departureTextField.getText());
+
+        } catch (ParseException ex) {
+            Logger.getLogger(RoomSearchForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         if (arrivalTextField.getText().equals(departureTextField.getText())) {
             showIncorrectError("The arrival date and the departure date must be different.");
+        } else if (checkOutDate.before(new java.util.Date(checkInDate.getTime() + time % (24 * 60 * 60 * 1000)))) {
+            showIncorrectError("Check out will after Check in date");
+            System.out.println("Wrong input");
+        } else if (checkInDate.before(todayMidnight)) {
+            // TODO   having trouble update the error message on form and display
+            showIncorrectError("Arrival dates should be after today's date");
+            System.out.println("TOO EARLY");
         } else {
             Hotelwise.roomsListForm.hideAllPanel();
             unavailableTextField.setVisible(true);
@@ -233,8 +264,7 @@ public class RoomSearchForm extends AbstractForm {
         });
     }
 
-    
-   
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField arrivalTextField;
     private javax.swing.JTextField customerLabel;
@@ -259,6 +289,7 @@ public class RoomSearchForm extends AbstractForm {
 
     public void showIncorrectError(String errorText) {
         incorrectTextField1.setVisible(true);
+        //incorrectTextField1.setText("");
         incorrectTextField1.setText(errorText);
 
         this.doLayout(); // seems no effect

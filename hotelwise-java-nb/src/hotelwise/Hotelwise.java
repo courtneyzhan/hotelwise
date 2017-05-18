@@ -204,18 +204,16 @@ public class Hotelwise {
 
         Long time = today.getTime();
         Date todayMidnight = new Date(time - time % (24 * 60 * 60 * 1000));
-
+/*
         if (checkOutDate.before(new java.util.Date(checkInDate.getTime() + time % (24 * 60 * 60 * 1000)))) {
             searchForm.showIncorrectError("Check out will after Check in date");
-            System.out.println("Wrong ionput");
-        }
-
-        if (checkInDate.before(todayMidnight)) {
+            System.out.println("Wrong input");
+        } else if (checkInDate.before(todayMidnight)) {
             // TODO   having trouble update the error message on form and display
             searchForm.showIncorrectError("Arrival dates should be after today's date");
             System.out.println("TOO EARLY");
         }
-
+*/
         int daysbetween = (int) (checkOutDate.getTime() - checkInDate.getTime());
         int duration = (int) TimeUnit.DAYS.convert(daysbetween, TimeUnit.MILLISECONDS);
         //TODO PASSES IN ZERO
@@ -225,6 +223,7 @@ public class Hotelwise {
         System.out.println("Number of guests: " + numOfGuests + ", Arrival Date: " + checkInDate + ", Departure Date: " + checkOutDate + ",  Room Type ID: " + roomType + ", Days between: " + TimeUnit.DAYS.convert(daysbetween, TimeUnit.MILLISECONDS));
         boolean roomFound = false;
         Room chosenRoom;
+        
         Float unitPrice = appData.findRoomTypeByName(roomType).getPrice();
         Float total = unitPrice * duration;
 
@@ -240,7 +239,6 @@ public class Hotelwise {
                 confirmForm.setCheckOutDate(checkOutDate);
                 confirmForm.setTotalPrice(total);
                 break;
-
             }
         }
 
