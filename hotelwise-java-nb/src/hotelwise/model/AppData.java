@@ -37,7 +37,7 @@ public class AppData implements java.io.Serializable {
         roomList = new ArrayList<Room>();
         customerList = new ArrayList<Customer>();
         bookingList = new ArrayList<Booking>();
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
 
         // seed Users here
         User newUser = new User();
@@ -85,12 +85,14 @@ public class AppData implements java.io.Serializable {
         room101.setRoomType("Single");
         room101.setRoomNumber("101");
         room101.setFloor("1");
+        room101.setStatus("Available");
         roomList.add(room101);
         
         Room room102 = new Room();
         room102.setRoomType("Single");
         room102.setRoomNumber("102");
         room102.setFloor("2");
+        room102.setStatus("Available");
         roomList.add(room101);
 
         Room room201 = new Room();

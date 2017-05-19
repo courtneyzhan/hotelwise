@@ -177,7 +177,7 @@ public class StaffManageBookingsForm extends javax.swing.JFrame {
         // TODO add your handling code here:
         Booking currentBooking = hotelwise.Hotelwise.displayBookingDetails(Integer.parseInt((String) bookingIdComboBox.getSelectedItem()));
 
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); //format it as per your requirement
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy"); //format it as per your requirement
         String checkInDate = formatter.format(currentBooking.getCheckInDate().getTime());
         String checkOutDate = formatter.format(currentBooking.getCheckOutDate().getTime());
 
@@ -194,7 +194,7 @@ public class StaffManageBookingsForm extends javax.swing.JFrame {
             Booking selectedBooking = appData.getBookingList().get(index);
             // verify it is right one
             System.out.println("DEBUG .." + selectedBooking);
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); //format it as per your requirement
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy"); //format it as per your requirement
             
             java.util.Date checkInDate = formatter.parse(checkInDateTextField.getText());
             java.util.Date checkOutDate = formatter.parse(checkOutDateTextField.getText());

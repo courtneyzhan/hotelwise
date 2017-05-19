@@ -223,6 +223,7 @@ public class ConfirmationPaymentForm extends AbstractForm {
         appData.createBooking(customer, roomType, checkInDate, checkOutDate, totalPrice, numOfGuests);
         confirmForm.setVisible(false);
         cusFinishBookForm.setVisible(true);
+       
     }//GEN-LAST:event_payButtonActionPerformed
 
 

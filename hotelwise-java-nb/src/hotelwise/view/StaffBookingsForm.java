@@ -22,32 +22,13 @@ import javax.swing.table.TableModel;
 public class StaffBookingsForm extends javax.swing.JFrame {
 
     private AppData appData;
-
+    
     /**
      * Creates new form StaffBookingsForm
      */
-    public StaffBookingsForm(AppData appData) {
+    public StaffBookingsForm() {
         initComponents();
-
-        this.appData = appData;
-
-        String col[] = {"Room Type", "Customer ID", "Check In Date", "Check Out Date", "Total Price", "Number of Guests"};
-        DefaultTableModel model = new DefaultTableModel(col, 0);
-
-        for (int i = 0; i < appData.getBookingList().size(); i++) {
-            Booking currentBooking = appData.getBookingList().get(i);
-            SimpleDateFormat isoFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
-            String checkInDateStr = isoFormat.format(currentBooking.getCheckInDate());
-            String checkOutDateStr = isoFormat.format(currentBooking.getCheckOutDate());
-
-            Object[] objs = {currentBooking.getRoomType(), currentBooking.getCustomerId(),
-                checkInDateStr, checkOutDateStr,currentBooking.getTotalPrice(), 
-                currentBooking.getNumOfGuests()};
-            System.out.println(java.util.Arrays.toString(objs));
-            model.addRow(objs);
-        }
-
-        jTable.setModel(model);
+        refreshData();
     }
 
     /**
@@ -127,7 +108,28 @@ public class StaffBookingsForm extends javax.swing.JFrame {
         staffHomeForm.setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
 
+    public void refreshData() {
+        appData = AppData.loadData();
+        String col[] = {"Room Type", "Customer ID", "Check In Date", "Check Out Date", "Total Price", "Number of Guests"};
 
+        DefaultTableModel model = new DefaultTableModel(col, 0);
+
+        for (int i = 0; i < appData.getBookingList().size(); i++) {
+            Booking currentBooking = appData.getBookingList().get(i);
+            SimpleDateFormat isoFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+            String checkInDateStr = isoFormat.format(currentBooking.getCheckInDate());
+            String checkOutDateStr = isoFormat.format(currentBooking.getCheckOutDate());
+
+            Object[] objs = {currentBooking.getRoomType(), currentBooking.getCustomerId(),
+                checkInDateStr, checkOutDateStr,currentBooking.getTotalPrice(), 
+                currentBooking.getNumOfGuests()};
+            model.addRow(objs);
+        }
+
+        jTable.setModel(model);
+    }
+
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
     private javax.swing.JButton jButton1;
@@ -135,4 +137,6 @@ public class StaffBookingsForm extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable;
     // End of variables declaration//GEN-END:variables
+
+  
 }

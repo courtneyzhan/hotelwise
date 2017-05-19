@@ -140,6 +140,7 @@ public class CustomerLogInForm extends javax.swing.JFrame {
     private void SignInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SignInButtonActionPerformed
         incorrectTextField.setVisible(true);
         Hotelwise.login(emailTextField.getText(), passwordField.getText());
+        resetFields();
     }//GEN-LAST:event_SignInButtonActionPerformed
 
     private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
@@ -201,5 +202,10 @@ public class CustomerLogInForm extends javax.swing.JFrame {
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JButton registerCustomerButton;
     // End of variables declaration//GEN-END:variables
+
+    private void resetFields() {
+        emailTextField.setText("");
+        passwordField.setText("");
+    }
 
 }

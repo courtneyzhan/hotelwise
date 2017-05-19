@@ -101,6 +101,7 @@ public class StaffHomeForm extends javax.swing.JFrame {
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
         staffHomeForm.setVisible(false);
         welcomeForm.setVisible(true);
+        staffLoginForm.resetFields();
     }//GEN-LAST:event_logoutButtonActionPerformed
 
     private void viewBookingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBookingsButtonActionPerformed

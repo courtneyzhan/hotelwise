@@ -118,7 +118,7 @@ public class CustomerRegisterForm extends javax.swing.JFrame {
             }
         });
 
-        pwMatchErrorLabel.setText("Passwords do not match");
+        pwMatchErrorLabel.setText("Passwords do not match/Email not valid");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -157,7 +157,7 @@ public class CustomerRegisterForm extends javax.swing.JFrame {
                         .addGap(169, 169, 169)
                         .addComponent(jLabel4))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(130, 130, 130)
+                        .addGap(82, 82, 82)
                         .addComponent(pwMatchErrorLabel)))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
@@ -221,23 +221,33 @@ public class CustomerRegisterForm extends javax.swing.JFrame {
     }//GEN-LAST:event_address1TextFieldActionPerformed
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-
-        if (reenterPasswordTextField.getText().equals(passwordTextField.getText())) {
+        boolean emailValidated = false;
+        for (int i = 0; i < emailTextField.getText().length(); i++) {
+            if (emailTextField.getText().charAt(i) == '@') {
+                emailValidated = true;
+            }
+        }
+        if (reenterPasswordTextField.getText().equals(passwordTextField.getText()) && emailValidated) {
             try {
                 //java.util.Date date = new java.util.Date();
                 //System.out.println("Call register New");
 
-                SimpleDateFormat parser = new SimpleDateFormat("yyyy-MM-dd");
+                SimpleDateFormat parser = new SimpleDateFormat("dd/MM/yyyy");
                 java.util.Date date = parser.parse(dobTextField.getText());
 
                 appData.registerNewCustomer(firstNameTextField.getText(), lastNameTextField.getText(), date, address1TextField.getText(), address2TextField.getText(), emailTextField.getText(), passwordTextField.getText(), "0", 0, 0);
                 Hotelwise.cusRegisterForm.setVisible(false);
                 Hotelwise.loginForm.setVisible(true);
+                resetFields();
             } catch (ParseException ex) {
                 Logger.getLogger(CustomerRegisterForm.class.getName()).log(Level.SEVERE, null, ex);
             }
+        } else if (!(reenterPasswordTextField.getText().equals(passwordTextField.getText()))){
+            pwMatchErrorLabel.setVisible(true);
+            pwMatchErrorLabel.setText("Passwords do not match");
         } else {
             pwMatchErrorLabel.setVisible(true);
+            pwMatchErrorLabel.setText("Email not valid");
         }
     }//GEN-LAST:event_registerButtonActionPerformed
 
@@ -269,5 +279,16 @@ public class CustomerRegisterForm extends javax.swing.JFrame {
     private javax.swing.JPasswordField reenterPasswordTextField;
     private javax.swing.JButton registerButton;
     // End of variables declaration//GEN-END:variables
+
+    private void resetFields() {
+        address1TextField.setText("");
+        address2TextField.setText("");
+        dobTextField.setText("");
+        emailTextField.setText("");
+        firstNameTextField.setText("");
+        lastNameTextField.setText("");
+        passwordTextField.setText("");
+        reenterPasswordTextField.setText("");
+    }
 
 }

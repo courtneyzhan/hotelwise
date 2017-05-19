@@ -184,7 +184,7 @@ public class RoomSearchForm extends AbstractForm {
         Calendar currentDateCal = Calendar.getInstance(); //Get the current date
         TimeZone timeZone = TimeZone.getTimeZone("Australia/Brisbane");
         currentDateCal.setTimeZone(timeZone);
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); //format it as per your requirement
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy"); //format it as per your requirement
         String dateNow = formatter.format(currentDateCal.getTime());
         System.out.println("Now the date is :=>  " + currentDateCal.getTime());
         java.util.Date today = currentDateCal.getTime();

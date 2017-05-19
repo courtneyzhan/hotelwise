@@ -183,4 +183,9 @@ public class StaffLogInForm extends javax.swing.JFrame {
     private javax.swing.JPasswordField passwordField;
     private javax.swing.JTextField usernameTextField;
     // End of variables declaration//GEN-END:variables
+
+    void resetFields() {
+        usernameTextField.setText("");
+        passwordField.setText("");
+    }
 }
