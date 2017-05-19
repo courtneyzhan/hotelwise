@@ -43,7 +43,7 @@ public class AppData implements java.io.Serializable {
         User newUser = new User();
         newUser.setId(1);
         newUser.setLogin("staff");
-        newUser.setPassword("testwise");
+        newUser.setPassword("asdf");
         userList.add(newUser);
 
         //seed RoomType

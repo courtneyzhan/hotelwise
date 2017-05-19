@@ -5,6 +5,14 @@
  */
 package hotelwise.view;
 
+import static hotelwise.Hotelwise.*;
+import hotelwise.model.AppData;
+import hotelwise.model.Booking;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Courtney Zhan
@@ -16,6 +24,9 @@ public class StaffManageBookingsForm extends javax.swing.JFrame {
      */
     public StaffManageBookingsForm() {
         initComponents();
+        for (int i = 0; i <= appData.getBookingList().size() - 1; i++) {
+            bookingIdComboBox.addItem((i + 1) + "");
+        }
     }
 
     /**
@@ -34,6 +45,14 @@ public class StaffManageBookingsForm extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        updateButton = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
+        customerEmailTextField = new javax.swing.JTextField();
+        roomTypeTextField = new javax.swing.JTextField();
+        checkInDateTextField = new javax.swing.JTextField();
+        checkOutDateTextField = new javax.swing.JTextField();
+        numOfGuestsTextField = new javax.swing.JTextField();
+        bookingIdComboBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -52,6 +71,26 @@ public class StaffManageBookingsForm extends javax.swing.JFrame {
 
         jLabel7.setText("Number of Guests:");
 
+        updateButton.setText("Update");
+        updateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateButtonActionPerformed(evt);
+            }
+        });
+
+        backButton.setText("Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
+
+        bookingIdComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bookingIdComboBoxActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -59,41 +98,119 @@ public class StaffManageBookingsForm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(129, 129, 129)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(107, 107, 107)
+                        .addGap(50, 50, 50)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
                             .addComponent(jLabel2)
+                            .addComponent(jLabel3)
                             .addComponent(jLabel4)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6)
-                            .addComponent(jLabel7))))
-                .addContainerGap(132, Short.MAX_VALUE))
+                            .addComponent(jLabel7))
+                        .addGap(78, 78, 78)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(checkInDateTextField)
+                            .addComponent(checkOutDateTextField)
+                            .addComponent(customerEmailTextField)
+                            .addComponent(roomTypeTextField)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(bookingIdComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(numOfGuestsTextField))
+                        .addGap(47, 47, 47))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(backButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(updateButton)))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(152, 152, 152))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(21, 21, 21)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(bookingIdComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(customerEmailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(roomTypeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(checkInDateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(checkOutDateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7)
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(numOfGuestsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(updateButton)
+                    .addComponent(backButton))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        // TODO add your handling code here:
+        staffManageBookingsForm.setVisible(false);
+        staffHomeForm.setVisible(true);
+    }//GEN-LAST:event_backButtonActionPerformed
+
+    private void bookingIdComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookingIdComboBoxActionPerformed
+        // TODO add your handling code here:
+        Booking currentBooking = hotelwise.Hotelwise.displayBookingDetails(Integer.parseInt((String) bookingIdComboBox.getSelectedItem()));
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); //format it as per your requirement
+        String checkInDate = formatter.format(currentBooking.getCheckInDate().getTime());
+        String checkOutDate = formatter.format(currentBooking.getCheckOutDate().getTime());
+
+        customerEmailTextField.setText(appData.getCustomerList().get(currentBooking.getCustomerId() - 1).getEmail());
+        roomTypeTextField.setText(currentBooking.getRoomType());
+        checkInDateTextField.setText(checkInDate);
+        checkOutDateTextField.setText(checkOutDate);
+        numOfGuestsTextField.setText(currentBooking.getNumOfGuests() + "");
+    }//GEN-LAST:event_bookingIdComboBoxActionPerformed
+
+    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
+        try {
+            int index = Integer.parseInt((String) bookingIdComboBox.getSelectedItem()) - 1;
+            Booking selectedBooking = appData.getBookingList().get(index);
+            // verify it is right one
+            System.out.println("DEBUG .." + selectedBooking);
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd"); //format it as per your requirement
+            
+            java.util.Date checkInDate = formatter.parse(checkInDateTextField.getText());
+            java.util.Date checkOutDate = formatter.parse(checkOutDateTextField.getText());
+            selectedBooking.setCheckInDate(checkInDate);
+            selectedBooking.setCheckOutDate(checkOutDate);
+            selectedBooking.setCustomerId(appData.findCustomerByEmail(customerEmailTextField.getText()).getId());
+            selectedBooking.setRoomType(roomTypeTextField.getText());
+            selectedBooking.setNumOfGuests(Integer.parseInt(numOfGuestsTextField.getText()));
+            AppData.saveData(appData);
+            
+            staffManageBookingsForm.setVisible(false);
+            staffFinishForm.setVisible(true);
+        } catch (ParseException ex) {
+            Logger.getLogger(StaffManageBookingsForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_updateButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -131,6 +248,11 @@ public class StaffManageBookingsForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backButton;
+    private javax.swing.JComboBox<String> bookingIdComboBox;
+    private javax.swing.JTextField checkInDateTextField;
+    private javax.swing.JTextField checkOutDateTextField;
+    private javax.swing.JTextField customerEmailTextField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -138,5 +260,8 @@ public class StaffManageBookingsForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JTextField numOfGuestsTextField;
+    private javax.swing.JTextField roomTypeTextField;
+    private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
 }
