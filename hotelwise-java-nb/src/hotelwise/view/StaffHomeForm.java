@@ -30,8 +30,8 @@ public class StaffHomeForm extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        bookingButton = new javax.swing.JButton();
-        customerButton = new javax.swing.JButton();
+        viewBookingsButton = new javax.swing.JButton();
+        manageBookingsButton = new javax.swing.JButton();
         logoutButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -39,14 +39,19 @@ public class StaffHomeForm extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel1.setText("Staff Home");
 
-        bookingButton.setText("Bookings");
-        bookingButton.addActionListener(new java.awt.event.ActionListener() {
+        viewBookingsButton.setText("View all Bookings");
+        viewBookingsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bookingButtonActionPerformed(evt);
+                viewBookingsButtonActionPerformed(evt);
             }
         });
 
-        customerButton.setText("Customers");
+        manageBookingsButton.setText("Manage Bookings");
+        manageBookingsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageBookingsButtonActionPerformed(evt);
+            }
+        });
 
         logoutButton.setText("Logout");
         logoutButton.addActionListener(new java.awt.event.ActionListener() {
@@ -62,33 +67,32 @@ public class StaffHomeForm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(138, 138, 138)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(44, 44, 44)
-                                .addComponent(bookingButton)
-                                .addGap(50, 50, 50)
-                                .addComponent(customerButton)))
-                        .addGap(0, 38, Short.MAX_VALUE))
+                        .addContainerGap()
+                        .addComponent(viewBookingsButton)
+                        .addGap(50, 50, 50)
+                        .addComponent(manageBookingsButton)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(logoutButton)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(148, 148, 148))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(customerButton)
-                    .addComponent(bookingButton))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(manageBookingsButton)
+                    .addComponent(viewBookingsButton))
+                .addGap(18, 18, 18)
                 .addComponent(logoutButton)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -99,10 +103,16 @@ public class StaffHomeForm extends javax.swing.JFrame {
         welcomeForm.setVisible(true);
     }//GEN-LAST:event_logoutButtonActionPerformed
 
-    private void bookingButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookingButtonActionPerformed
+    private void viewBookingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBookingsButtonActionPerformed
         staffHomeForm.setVisible(false);
         staffBookingsForm.setVisible(true);
-    }//GEN-LAST:event_bookingButtonActionPerformed
+    }//GEN-LAST:event_viewBookingsButtonActionPerformed
+
+    private void manageBookingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageBookingsButtonActionPerformed
+        // TODO add your handling code here:
+        staffHomeForm.setVisible(false);
+        staffManageBookingsForm.setVisible(true);
+    }//GEN-LAST:event_manageBookingsButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -140,9 +150,9 @@ public class StaffHomeForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bookingButton;
-    private javax.swing.JButton customerButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton logoutButton;
+    private javax.swing.JButton manageBookingsButton;
+    private javax.swing.JButton viewBookingsButton;
     // End of variables declaration//GEN-END:variables
 }

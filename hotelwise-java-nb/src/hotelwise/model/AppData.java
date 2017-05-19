@@ -220,7 +220,7 @@ public class AppData implements java.io.Serializable {
         booking.setCheckInDate(checkInDate);
         booking.setCheckOutDate(checkOutDate);
         booking.setTotalPrice(totalPrice);
-
+        booking.setNumOfGuests(numOfGuests);
         this.bookingList.add(booking);
         AppData.saveData(this);
         System.out.println("Booking CREATED");
